@@ -5,7 +5,12 @@ function About() {
         <h1 className="text-3xl md:text-4xl font-bold mb-6">À propos de Story Délice</h1>
 
         <div className="relative h-[300px] mb-8 rounded-xl overflow-hidden">
-          <img src="/images/placeholder.jpg" alt="L'équipe de Story Délice" className="w-full h-full object-cover" />
+          <img
+            src="/placeholder.svg?height=600&width=1200"
+            alt="L'équipe de Story Délice"
+            fill
+            className="object-cover"
+          />
         </div>
 
         <div className="prose prose-pink max-w-none">
@@ -60,25 +65,63 @@ function About() {
             <div className="text-center">
               <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
                 <img
-                  src="/images/placeholder.jpg"
-                  alt="Sophie Martin - Fondatrice"
-                  className="w-full h-full object-cover"
+                  src="/placeholder.svg?height=200&width=200"
+                  alt="MESMINE Ornela - Chef Pâtissière"
+                  fill
+                  className="object-cover"
                 />
               </div>
-              <h3 className="font-bold text-xl">Sophie Martin</h3>
-              <p className="text-pink-500">Fondatrice & Chef Pâtissière</p>
+              <h3 className="font-bold text-xl">MESMINE Ornela</h3>
+              <p className="text-pink-500">Chef Pâtissière</p>
             </div>
 
             <div className="text-center">
               <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
                 <img
-                  src="/images/placeholder.jpg"
-                  alt="Thomas Dubois - Co-fondateur"
-                  className="w-full h-full object-cover"
+                  src="/placeholder.svg?height=200&width=200"
+                  alt="MAXENCE Schineider - Graphic Design"
+                  fill
+                  className="object-cover"
                 />
               </div>
-              <h3 className="font-bold text-xl">Thomas Dubois</h3>
-              <p className="text-pink-500">Co-fondateur & Photographe Culinaire</p>
+              <h3 className="font-bold text-xl">MAXENCE Schineider</h3>
+              <p className="text-pink-500">Co-Pâtissier & Graphic Design</p>
+            </div>
+            <div className="text-center">
+              <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
+                <img
+                  src="/placeholder.svg?height=200&width=200"
+                  alt="SONWA Dimitry - Developper"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="font-bold text-xl">SONWA Dimitry</h3>
+              <p className="text-pink-500">Developper & Technical Manager</p>
+            </div>
+            <div className="text-center">
+              <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
+                <img
+                  src="/placeholder.svg?height=200&width=200"
+                  alt="MAXENCE Schineider - Graphic Design"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="font-bold text-xl">MAXENCE Schineider</h3>
+              <p className="text-pink-500">Graphic Design</p>
+            </div>
+            <div className="text-center">
+              <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
+                <img
+                  src="/placeholder.svg?height=200&width=200"
+                  alt="MAXENCE Schineider - Graphic Design"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="font-bold text-xl">MAXENCE Schineider</h3>
+              <p className="text-pink-500">Graphic Design</p>
             </div>
           </div>
 

@@ -16,7 +16,7 @@ function Header() {
           </Link>
 
           {/* Navigation pour desktop */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center space-x-6  bg-pink-500">
             <Link href="/" className="text-lg font-medium hover:text-primary transition-colors">
               Accueil
             </Link>

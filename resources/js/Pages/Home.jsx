@@ -1,4 +1,6 @@
 import { Link } from '@inertiajs/react'
+import "@/Components/UI/CategoryCard"
+import "@/Components/UI/RecipeCard"
 
 // Données simulées pour les recettes
 const featuredRecipes = [
@@ -83,19 +85,19 @@ function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
-      <section className="bg-accent rounded-xl p-8 mb-12">
+      <section className="bg-pink-50 rounded-xl p-8 mb-12">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-1/2">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-secondary">Découvrez l'Art de la Pâtisserie</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Découvrez l'Art de la Pâtisserie</h1>
             <p className="text-lg text-gray-700 mb-6">
               Bienvenue sur Story Délice, votre source d'inspiration pour des recettes de pâtisserie délicieuses et
               créatives.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md">
+              <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded outline hover:bg-pink-600">
                 Découvrir nos recettes
               </button>
-              <button className="border border-primary text-primary hover:bg-accent/80 px-4 py-2 rounded-md">
+              <button className="border border-primary text-primary hover:bg-pink-100 px-4 py-2 rounded">
                 En savoir plus
               </button>
             </div>
@@ -104,7 +106,9 @@ function Home() {
             <img
               src="/images/placeholder.jpg"
               alt="Délicieuses pâtisseries"
-              className="rounded-lg shadow-md w-full h-auto"
+              width={600}
+              height={400}
+              className="rounded-lg shadow-md"
             />
           </div>
         </div>
@@ -113,7 +117,7 @@ function Home() {
       {/* Featured Recipes */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-secondary">Recettes Populaires</h2>
+          <h2 className="text-2xl md:text-3xl font-bold">Recettes Populaires</h2>
           <Link to="/recipes" className="text-primary hover:underline">
             Voir toutes les recettes
           </Link>
@@ -165,7 +169,7 @@ function Home() {
             <Link
               key={category.id}
               to={`/categories/${category.id}`}
-              className="bg-white border border-primary/20 rounded-lg p-4 text-center hover:border-primary hover:shadow-md transition-all"
+              className="bg-pink-100 border border-gray-200 rounded-lg p-4 text-center hover:border-pink-300 hover:shadow-md transition-all"
             >
               <h3 className="font-medium mb-1 text-secondary">{category.name}</h3>
               <p className="text-sm text-gray-500">{category.count} recettes</p>
@@ -185,9 +189,9 @@ function Home() {
             <input
               type="email"
               placeholder="Votre adresse email"
-              className="flex-grow px-4 py-2 rounded-md border border-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="flex-grow px-4 py-2 rounded border border-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
-            <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-md">S'abonner</button>
+            <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded">S'abonner</button>
           </div>
         </div>
       </section>

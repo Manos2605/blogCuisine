@@ -15,19 +15,19 @@ function Header() {
 
           {/* Navigation pour desktop */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/" className="text-lg font-medium hover:text-primary transition-colors">
+            <Link href="/" className="text-lg font-medium hover:text-pink-500 transition-colors">
               Accueil
             </Link>
-            <Link href="/categories" className="text-lg font-medium hover:text-primary transition-colors">
+            <Link href="/categories" className="text-lg font-medium hover:text-pink-500 transition-colors">
               Catégories
             </Link>
-            <Link href="/about" className="text-lg font-medium hover:text-primary transition-colors">
+            <Link href="/about" className="text-lg font-medium hover:text-pink-500 transition-colors">
               À propos
             </Link>
-            <Link href="/contact" className="text-lg font-medium hover:text-primary transition-colors">
+            <Link href="/contact" className="text-lg font-medium hover:text-pink-500 transition-colors">
               Contact
             </Link>
-            <button className="p-2 rounded-full hover:bg-accent transition-colors">
+            <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
               <Search className="h-5 w-5" />
             </button>
           </nav>
@@ -53,18 +53,28 @@ function Header() {
                   </button>
                 </div>
                 <nav className="flex flex-col items-center space-y-4 p-4">
-                  <Link href="/" className="text-lg font-medium hover:text-primary transition-colors">
+                  <Link href="/" className="text-lg font-medium hover:text-pink-500 transition-colors">
                     Accueil
                   </Link>
-                  <Link href="/categories" className="text-lg font-medium hover:text-primary transition-colors">
+                  <Link href="/categories" className="text-lg font-medium hover:text-pink-500 transition-colors">
                     Catégories
                   </Link>
-                  <Link href="/about" className="text-lg font-medium hover:text-primary transition-colors">
+                  <Link href="/about" className="text-lg font-medium hover:text-pink-500 transition-colors">
                     À propos
                   </Link>
-                  <Link href="/contact" className="text-lg font-medium hover:text-primary transition-colors">
+                  <Link href="/contact" className="text-lg font-medium hover:text-pink-500 transition-colors">
                     Contact
                   </Link>
+                  <div className="flex items-center mt-4">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Rechercher..."
+                        className="pl-3 pr-10 py-2 border rounded w-full"
+                      />
+                      <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                    </div>
+                  </div>
                 </nav>
               </div>
             )}

@@ -50,7 +50,7 @@ function Contact() {
               </div>
             </div>
             <h3 className="font-bold mb-2">Email</h3>
-            <p className="text-gray-600">contact@storydelice.com</p>
+            <p className="text-gray-600">storydelice@gmail.com</p>
           </div>
 
           <div className="p-6 text-center border rounded-lg shadow-sm">
@@ -60,7 +60,7 @@ function Contact() {
               </div>
             </div>
             <h3 className="font-bold mb-2">Téléphone</h3>
-            <p className="text-gray-600">+33 1 23 45 67 89</p>
+            <p className="text-gray-600">+237 677 608 758</p>
           </div>
 
           <div className="p-6 text-center border rounded-lg shadow-sm">
@@ -71,14 +71,14 @@ function Contact() {
             </div>
             <h3 className="font-bold mb-2">Adresse</h3>
             <p className="text-gray-600">
-              123 Rue de la Pâtisserie
+              ENSPY
               <br />
-              75001 Paris, France
+              Yaoundé, Cameroun
             </p>
           </div>
         </div>
 
-        <div className="p-6 mb-8 border rounded-lg shadow-sm">
+        <div className="p-6 mb-8 border rounded shadow-sm">
           <h2 className="text-2xl font-bold mb-6">Formulaire de Contact</h2>
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -151,23 +151,24 @@ function Contact() {
           </form>
         </div>
 
-        <div className="bg-pink-50 rounded-xl p-6 text-center">
+        <div className="bg-custom-pink-100  rounded-xl p-6 text-center">
           <h2 className="text-2xl font-bold mb-4">Suivez-nous</h2>
           <p className="text-gray-600 mb-6">
             Restez connecté avec nous sur les réseaux sociaux pour découvrir nos dernières recettes et actualités.
           </p>
           <div className="flex justify-center space-x-4">
-            <a href="#" className="p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
-              Facebook
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+            <a href="#" className="bi bi-facebook p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
+              Facebook <i className="bi bi-facebook"></i>
             </a>
-            <a href="#" className="p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
-              Instagram
+            <a href="#" className="bi bi-instagram p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
+              Instagram <i className="bi bi-instagram"></i>
             </a>
-            <a href="#" className="p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
+            {/* <a href="#" className="p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
               Pinterest
-            </a>
-            <a href="#" className="p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
-              YouTube
+            </a> */}
+            <a href="#" className="bi bi-youtube p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
+              YouTube <i className="bi bi-youtube"></i>
             </a>
           </div>
         </div>
