@@ -5,7 +5,17 @@ import { Clock, ChefHat, Printer, Share2, BookmarkPlus } from "lucide-react"
 
 function RecipeDetail({ recipe }) {
   if (!recipe) {
-    return <div className="container mx-auto px-4 py-8">Chargement...</div>
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">Recette non trouvée</h1>
+          <p className="text-gray-600 mb-6">La recette que vous recherchez n'existe pas ou a été supprimée.</p>
+          <Link href="/" className="text-primary hover:underline">
+            Retour à l'accueil
+          </Link>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -20,9 +30,7 @@ function RecipeDetail({ recipe }) {
           Catégories
         </Link>
         <span className="mx-2">/</span>
-        <Link href={`/categories/${recipe.category_id}`} className="hover:text-pink-500">
-          {recipe.category}
-        </Link>
+        <span className="text-gray-700">{recipe.category}</span>
         <span className="mx-2">/</span>
         <span className="text-gray-700">{recipe.title}</span>
       </div>
@@ -30,6 +38,7 @@ function RecipeDetail({ recipe }) {
       {/* Recipe Header */}
       <div className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{recipe.title}</h1>
+        <p className="text-gray-600 mb-4">{recipe.description}</p>
         <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-6">
           <div className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
@@ -106,17 +115,19 @@ function RecipeDetail({ recipe }) {
           </div>
 
           {/* Tips */}
-          <div className="mb-8 bg-gray-50 rounded-xl p-6">
-            <h2 className="text-xl font-bold mb-4">Astuces du Chef</h2>
-            <ul className="space-y-2">
-              {recipe.tips.map((tip, index) => (
-                <li key={index} className="flex items-start gap-2">
-                  <span className="text-pink-500 font-bold">•</span>
-                  <span>{tip}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {recipe.tips && recipe.tips.length > 0 && (
+            <div className="mb-8 bg-gray-50 rounded-xl p-6">
+              <h2 className="text-xl font-bold mb-4">Astuces du Chef</h2>
+              <ul className="space-y-2">
+                {recipe.tips.map((tip, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-pink-500 font-bold">•</span>
+                    <span>{tip}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           {/* Author */}
           <div className="mb-8 border-t border-b py-6">

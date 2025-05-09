@@ -16,10 +16,10 @@ class RecipeSeeder extends Seeder
                 'image' => '/images/placeholder.jpg',
                 'category' => 'Tartes',
                 'difficulty' => 'Facile',
-                'prep_time' => '30 min',
-                'cook_time' => '25 min',
+                'prep_time' => 30,
+                'cook_time' => 25,
                 'servings' => 8,
-                'ingredients' => [
+                'ingredients' => json_encode([
                     '1 pâte sablée',
                     '500g de fraises fraîches',
                     '50cl de lait entier',
@@ -28,38 +28,22 @@ class RecipeSeeder extends Seeder
                     '40g de farine',
                     '1 gousse de vanille',
                     '20g de beurre',
-                    'Quelques feuilles de menthe pour la décoration',
-                ],
-                'steps' => [
-                    [
-                        'title' => 'Préparation de la pâte',
-                        'description' => 'Étalez la pâte sablée dans un moule à tarte de 28cm de diamètre. Piquez le fond avec une fourchette et réservez au réfrigérateur pendant 30 minutes.',
-                    ],
-                    [
-                        'title' => 'Cuisson à blanc',
-                        'description' => 'Préchauffez le four à 180°C. Recouvrez la pâte de papier sulfurisé et de haricots secs. Faites cuire pendant 15 minutes, puis retirez les haricots et le papier et poursuivez la cuisson pendant 10 minutes jusqu\'à ce que la pâte soit dorée.',
-                    ],
-                    [
-                        'title' => 'Préparation de la crème pâtissière',
-                        'description' => 'Fendez la gousse de vanille et grattez les graines. Dans une casserole, faites chauffer le lait avec la gousse et les graines de vanille. Dans un saladier, fouettez les jaunes d\'œufs avec le sucre jusqu\'à ce que le mélange blanchisse. Ajoutez la farine et mélangez. Versez progressivement le lait chaud sur ce mélange tout en remuant. Remettez le tout dans la casserole et faites épaissir à feu doux sans cesser de remuer. Hors du feu, ajoutez le beurre et mélangez. Laissez refroidir.',
-                    ],
-                    [
-                        'title' => 'Montage de la tarte',
-                        'description' => 'Étalez la crème pâtissière refroidie sur le fond de tarte. Lavez et équeutez les fraises, puis coupez-les en deux. Disposez-les harmonieusement sur la crème.',
-                    ],
-                    [
-                        'title' => 'Finition',
-                        'description' => 'Vous pouvez napper les fraises avec un peu de gelée de fraises ou de nappage neutre pour leur donner de la brillance. Décorez avec quelques feuilles de menthe fraîche.',
-                    ],
-                ],
-                'tips' => [
-                    'Pour une tarte encore plus gourmande, ajoutez un peu de mascarpone à votre crème pâtissière.',
-                    'Vous pouvez remplacer les fraises par d\'autres fruits de saison comme les framboises ou les pêches.',
-                    'Pour éviter que la pâte ne se détrempe, vous pouvez la badigeonner de blanc d\'œuf avant la cuisson.',
-                ],
-                'author' => 'Marie Dupont',
+                    'Quelques feuilles de menthe pour la décoration'
+                ]),
+                'steps' => json_encode([
+                    'Étaler la pâte sablée dans un moule',
+                    'Préparer la crème pâtissière',
+                    'Laver et couper les fraises',
+                    'Assembler la tarte',
+                    'Décorer avec les fraises et la menthe'
+                ]),
+                'tips' => json_encode([
+                    'Utiliser des fraises bien mûres',
+                    'Laisser refroidir la crème pâtissière avant montage'
+                ]),
+                'author' => 'Chef Marie',
                 'author_image' => '/images/placeholder-author.jpg',
-                'date' => '2023-03-15',
+                'date' => now()
             ],
             [
                 'title' => 'Macarons à la Vanille',
@@ -67,39 +51,163 @@ class RecipeSeeder extends Seeder
                 'image' => '/images/placeholder.jpg',
                 'category' => 'Petits Gâteaux',
                 'difficulty' => 'Intermédiaire',
-                'prep_time' => '45 min',
-                'cook_time' => '15 min',
+                'prep_time' => 45,
+                'cook_time' => 15,
                 'servings' => 20,
-                'ingredients' => [
+                'ingredients' => json_encode([
                     '200g de poudre d\'amandes',
                     '200g de sucre glace',
                     '75g de blancs d\'œufs',
                     '200g de sucre',
                     '50g d\'eau',
-                    '1 gousse de vanille',
-                ],
-                'steps' => [
-                    [
-                        'title' => 'Préparation de la meringue',
-                        'description' => 'Dans une casserole, faites chauffer le sucre et l\'eau jusqu\'à 118°C. Pendant ce temps, montez les blancs en neige. Versez le sirop chaud sur les blancs en neige tout en continuant de battre jusqu\'à ce que la meringue soit froide.',
-                    ],
-                    [
-                        'title' => 'Mélange des ingrédients',
-                        'description' => 'Mélangez la poudre d\'amandes et le sucre glace. Incorporez délicatement ce mélange à la meringue. Ajoutez les graines de la gousse de vanille.',
-                    ],
-                    [
-                        'title' => 'Cuisson',
-                        'description' => 'Préchauffez le four à 150°C. Formez des petits tas de pâte sur une plaque recouverte de papier sulfurisé. Laissez croûter 30 minutes, puis enfournez pendant 15 minutes.',
-                    ],
-                ],
-                'tips' => [
-                    'Laissez bien croûter les macarons avant la cuisson pour obtenir une coque lisse.',
-                    'Vous pouvez ajouter du colorant alimentaire pour des macarons colorés.',
-                ],
-                'author' => 'Pierre Martin',
+                    '1 gousse de vanille'
+                ]),
+                'steps' => json_encode([
+                    'Tamiser la poudre d\'amandes et le sucre glace',
+                    'Préparer la meringue italienne',
+                    'Macaronner la pâte',
+                    'Dresser les coques',
+                    'Cuire à 150°C'
+                ]),
+                'tips' => json_encode([
+                    'Laisser croûter les macarons avant cuisson',
+                    'Surveiller attentivement la cuisson'
+                ]),
+                'author' => 'Chef Pierre',
                 'author_image' => '/images/placeholder-author.jpg',
-                'date' => '2023-04-02',
+                'date' => now()
             ],
+            [
+                'title' => 'Éclair au Chocolat',
+                'description' => 'Un classique de la pâtisserie française avec une ganache au chocolat intense.',
+                'image' => '/images/placeholder.jpg',
+                'category' => 'Pâtisseries Françaises',
+                'difficulty' => 'Intermédiaire',
+                'prep_time' => 40,
+                'cook_time' => 30,
+                'servings' => 8,
+                'ingredients' => json_encode([
+                    '250ml d\'eau',
+                    '100g de beurre',
+                    '150g de farine',
+                    '4 œufs',
+                    '200g de chocolat noir',
+                    '200ml de crème liquide'
+                ]),
+                'steps' => json_encode([
+                    'Préparer la pâte à choux',
+                    'Former les éclairs',
+                    'Cuire à 180°C',
+                    'Préparer la ganache',
+                    'Garnir les éclairs'
+                ]),
+                'tips' => json_encode([
+                    'Ne pas ouvrir le four pendant la cuisson',
+                    'Laisser refroidir avant de garnir'
+                ]),
+                'author' => 'Chef Sophie',
+                'author_image' => '/images/placeholder-author.jpg',
+                'date' => now()
+            ],
+            [
+                'title' => 'Cheesecake New-Yorkais',
+                'description' => 'Un cheesecake crémeux avec une base de biscuits croquante et une touche de citron.',
+                'image' => '/images/placeholder.jpg',
+                'category' => 'Gâteaux',
+                'difficulty' => 'Facile',
+                'prep_time' => 20,
+                'cook_time' => 50,
+                'servings' => 12,
+                'ingredients' => json_encode([
+                    '300g de biscuits spéculoos',
+                    '150g de beurre fondu',
+                    '750g de cream cheese',
+                    '200g de sucre',
+                    '3 œufs',
+                    '200ml de crème fraîche',
+                    '1 citron'
+                ]),
+                'steps' => json_encode([
+                    'Préparer la base biscuitée',
+                    'Mélanger la garniture',
+                    'Cuire au bain-marie',
+                    'Laisser refroidir',
+                    'Réfrigérer 4 heures'
+                ]),
+                'tips' => json_encode([
+                    'Sortir les ingrédients à température ambiante',
+                    'Utiliser un moule à charnière'
+                ]),
+                'author' => 'Chef John',
+                'author_image' => '/images/placeholder-author.jpg',
+                'date' => now()
+            ],
+            [
+                'title' => 'Mille-feuille',
+                'description' => 'Couches de pâte feuilletée croustillante et de crème pâtissière à la vanille.',
+                'image' => '/images/placeholder.jpg',
+                'category' => 'Pâtisseries Françaises',
+                'difficulty' => 'Avancé',
+                'prep_time' => 60,
+                'cook_time' => 25,
+                'servings' => 6,
+                'ingredients' => json_encode([
+                    '2 pâtes feuilletées',
+                    '1L de lait',
+                    '8 jaunes d\'œufs',
+                    '250g de sucre',
+                    '100g de farine',
+                    '2 gousses de vanille',
+                    'Sucre glace'
+                ]),
+                'steps' => json_encode([
+                    'Cuire la pâte feuilletée',
+                    'Préparer la crème pâtissière',
+                    'Découper les rectangles',
+                    'Monter les mille-feuilles',
+                    'Glacer au sucre glace'
+                ]),
+                'tips' => json_encode([
+                    'Bien refroidir la crème pâtissière',
+                    'Découper la pâte encore chaude'
+                ]),
+                'author' => 'Chef Michel',
+                'author_image' => '/images/placeholder-author.jpg',
+                'date' => now()
+            ],
+            [
+                'title' => 'Cookies aux Pépites de Chocolat',
+                'description' => 'Des cookies moelleux avec des pépites de chocolat fondantes.',
+                'image' => '/images/placeholder.jpg',
+                'category' => 'Biscuits',
+                'difficulty' => 'Facile',
+                'prep_time' => 15,
+                'cook_time' => 12,
+                'servings' => 20,
+                'ingredients' => json_encode([
+                    '250g de farine',
+                    '150g de beurre mou',
+                    '150g de sucre roux',
+                    '1 œuf',
+                    '200g de pépites de chocolat',
+                    '1 sachet de levure chimique',
+                    '1 pincée de sel'
+                ]),
+                'steps' => json_encode([
+                    'Mélanger le beurre et le sucre',
+                    'Ajouter l\'œuf',
+                    'Incorporer les ingrédients secs',
+                    'Former les cookies',
+                    'Cuire à 180°C'
+                ]),
+                'tips' => json_encode([
+                    'Laisser reposer la pâte au frais',
+                    'Ne pas trop cuire pour des cookies moelleux'
+                ]),
+                'author' => 'Chef Sarah',
+                'author_image' => '/images/placeholder-author.jpg',
+                'date' => now()
+            ]
         ];
 
         foreach ($recipes as $recipe) {
