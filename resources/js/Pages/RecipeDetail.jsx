@@ -1,85 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link } from "@inertiajs/react"
 import { Clock, ChefHat, Printer, Share2, BookmarkPlus } from "lucide-react"
 
-// Fonction pour simuler la récupération d'une recette par ID
-function getRecipe(id) {
-  return {
-    id: Number.parseInt(id),
-    title: "Tarte aux Fraises",
-    description: "Une délicieuse tarte aux fraises fraîches sur une crème pâtissière onctueuse.",
-    image: "/images/placeholder.jpg",
-    category: "Tartes",
-    categoryId: 1,
-    date: "15 mars 2023",
-    author: "Marie Dupont",
-    authorImage: "/images/placeholder-author.jpg",
-    difficulty: "Facile",
-    prepTime: "30 min",
-    cookTime: "25 min",
-    servings: 8,
-    ingredients: [
-      "1 pâte sablée",
-      "500g de fraises fraîches",
-      "50cl de lait entier",
-      "4 jaunes d'œufs",
-      "100g de sucre",
-      "40g de farine",
-      "1 gousse de vanille",
-      "20g de beurre",
-      "Quelques feuilles de menthe pour la décoration",
-    ],
-    steps: [
-      {
-        title: "Préparation de la pâte",
-        description:
-          "Étalez la pâte sablée dans un moule à tarte de 28cm de diamètre. Piquez le fond avec une fourchette et réservez au réfrigérateur pendant 30 minutes.",
-      },
-      {
-        title: "Cuisson à blanc",
-        description:
-          "Préchauffez le four à 180°C. Recouvrez la pâte de papier sulfurisé et de haricots secs. Faites cuire pendant 15 minutes, puis retirez les haricots et le papier et poursuivez la cuisson pendant 10 minutes jusqu'à ce que la pâte soit dorée.",
-      },
-      {
-        title: "Préparation de la crème pâtissière",
-        description:
-          "Fendez la gousse de vanille et grattez les graines. Dans une casserole, faites chauffer le lait avec la gousse et les graines de vanille. Dans un saladier, fouettez les jaunes d'œufs avec le sucre jusqu'à ce que le mélange blanchisse. Ajoutez la farine et mélangez. Versez progressivement le lait chaud sur ce mélange tout en remuant. Remettez le tout dans la casserole et faites épaissir à feu doux sans cesser de remuer. Hors du feu, ajoutez le beurre et mélangez. Laissez refroidir.",
-      },
-      {
-        title: "Montage de la tarte",
-        description:
-          "Étalez la crème pâtissière refroidie sur le fond de tarte. Lavez et équeutez les fraises, puis coupez-les en deux. Disposez-les harmonieusement sur la crème.",
-      },
-      {
-        title: "Finition",
-        description:
-          "Vous pouvez napper les fraises avec un peu de gelée de fraises ou de nappage neutre pour leur donner de la brillance. Décorez avec quelques feuilles de menthe fraîche.",
-      },
-    ],
-    tips: [
-      "Pour une tarte encore plus gourmande, ajoutez un peu de mascarpone à votre crème pâtissière.",
-      "Vous pouvez remplacer les fraises par d'autres fruits de saison comme les framboises ou les pêches.",
-      "Pour éviter que la pâte ne se détrempe, vous pouvez la badigeonner de blanc d'œuf avant la cuisson.",
-    ],
-    relatedRecipes: [
-      { id: 2, title: "Tarte au Citron Meringuée", image: "/images/placeholder.jpg" },
-      { id: 3, title: "Tarte aux Pommes", image: "/images/placeholder.jpg" },
-      { id: 4, title: "Tarte Tatin", image: "/images/placeholder.jpg" },
-    ],
-  }
-}
-
-function RecipeDetail() {
-  const { id } = useParams()
-  const [recipe, setRecipe] = useState(null)
-
-  useEffect(() => {
-    // Simuler une requête API pour obtenir les détails de la recette
-    setRecipe(getRecipe(id))
-  }, [id])
-
+function RecipeDetail({ recipe }) {
   if (!recipe) {
     return <div className="container mx-auto px-4 py-8">Chargement...</div>
   }
@@ -88,15 +12,15 @@ function RecipeDetail() {
     <div className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <div className="text-sm text-gray-500 mb-6">
-        <Link to="/" className="hover:text-pink-500">
+        <Link href="/" className="hover:text-pink-500">
           Accueil
         </Link>
         <span className="mx-2">/</span>
-        <Link to="/categories" className="hover:text-pink-500">
+        <Link href="/categories" className="hover:text-pink-500">
           Catégories
         </Link>
         <span className="mx-2">/</span>
-        <Link to={`/categories/${recipe.categoryId}`} className="hover:text-pink-500">
+        <Link href={`/categories/${recipe.category_id}`} className="hover:text-pink-500">
           {recipe.category}
         </Link>
         <span className="mx-2">/</span>
@@ -109,11 +33,11 @@ function RecipeDetail() {
         <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-6">
           <div className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
-            <span>Préparation: {recipe.prepTime}</span>
+            <span>Préparation: {recipe.prep_time}</span>
           </div>
           <div className="flex items-center gap-1">
             <Clock className="h-4 w-4" />
-            <span>Cuisson: {recipe.cookTime}</span>
+            <span>Cuisson: {recipe.cook_time}</span>
           </div>
           <div className="flex items-center gap-1">
             <ChefHat className="h-4 w-4" />
@@ -198,33 +122,14 @@ function RecipeDetail() {
           <div className="mb-8 border-t border-b py-6">
             <div className="flex items-center gap-4">
               <img
-                src={recipe.authorImage || "/placeholder.svg"}
+                src={recipe.author_image || "/placeholder-author.svg"}
                 alt={recipe.author}
-                className="w-[60px] h-[60px] rounded-full"
+                className="w-12 h-12 rounded-full"
               />
               <div>
-                <p className="text-sm text-gray-500">Recette proposée par</p>
                 <h3 className="font-bold">{recipe.author}</h3>
+                <p className="text-sm text-gray-600">Publié le {recipe.date}</p>
               </div>
-            </div>
-          </div>
-
-          {/* Related Recipes */}
-          <div>
-            <h2 className="text-2xl font-bold mb-6">Recettes similaires</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {recipe.relatedRecipes.map((related) => (
-                <Link key={related.id} to={`/recipes/${related.id}`} className="group">
-                  <div className="relative h-40 mb-2 overflow-hidden rounded-lg">
-                    <img
-                      src={related.image || "/placeholder.svg"}
-                      alt={related.title}
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                    />
-                  </div>
-                  <h3 className="font-medium group-hover:text-pink-500 transition-colors">{related.title}</h3>
-                </Link>
-              ))}
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RecipeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -17,9 +18,7 @@ Route::get('/categories/{id}', function ($id) {
     return Inertia::render('CategoryDetail', ['id' => $id]);
 })->name('category.show');
 
-Route::get('/recipes/{id}', function ($id) {
-    return Inertia::render('RecipeDetail', ['id' => $id]);
-})->name('recipe.show');
+Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('recipe.show');
 
 Route::get('/about', function () {
     return Inertia::render('About');

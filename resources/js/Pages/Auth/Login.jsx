@@ -15,15 +15,18 @@ export default function Login({ status, canResetPassword }) {
 
     const submit = (e) => {
         e.preventDefault();
-
+        console.log('Tentative de connexion avec:', data);
         post(route('login'), {
             onFinish: () => reset('password'),
+            onError: (errors) => {
+                console.error('Erreur de connexion:', errors);
+            },
         });
     };
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title="Connexion" />
 
             {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
@@ -50,7 +53,7 @@ export default function Login({ status, canResetPassword }) {
                 </div>
 
                 <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
+                    <InputLabel htmlFor="password" value="Mot de passe" />
 
                     <TextInput
                         id="password"
@@ -75,7 +78,7 @@ export default function Login({ status, canResetPassword }) {
                             }
                         />
                         <span className="ms-2 text-sm text-gray-600">
-                            Remember me
+                            Se souvenir de moi
                         </span>
                     </label>
                 </div>
@@ -86,15 +89,24 @@ export default function Login({ status, canResetPassword }) {
                             href={route('password.request')}
                             className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                         >
-                            Forgot your password?
+                            Mot de passe oublié ?
                         </Link>
                     )}
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
+                        Se connecter
                     </PrimaryButton>
                 </div>
             </form>
+
+            <div className="mt-4 text-center">
+                <Link
+                    href={route('register')}
+                    className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                >
+                    Pas encore de compte ? S'inscrire
+                </Link>
+            </div>
         </GuestLayout>
     );
 }

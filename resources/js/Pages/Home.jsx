@@ -97,9 +97,9 @@ function Home() {
               <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded outline hover:bg-pink-600">
                 Découvrir nos recettes
               </button>
-              <button className="border border-primary text-primary hover:bg-pink-100 px-4 py-2 rounded">
-                En savoir plus
-              </button>
+              <Link href={route('login')} className="border border-primary text-primary hover:bg-pink-100 px-4 py-2 rounded">
+                Se connecter
+              </Link>
             </div>
           </div>
           <div className="md:w-1/2">
