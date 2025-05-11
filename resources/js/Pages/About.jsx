@@ -15,12 +15,15 @@ function About() {
 
         <div className="prose prose-pink max-w-none">
           <p className="lead text-xl">
-            Bienvenue sur Story Délice, votre destination gourmande pour découvrir les meilleures recettes de
+            Bienvenue sur <strong className="text-pink-500 text-2xl">Story Délice</strong>, votre destination gourmande pour découvrir les meilleures recettes de
             pâtisserie.
           </p>
-
-          <h2>Notre Histoire</h2>
-          <p>
+            <h2 className="font-bold underline">Notre Philosophie</h2>
+            <strong className="text-pink-500 text-xl">"Chez Story Délice, nous croyons que la pâtisserie est bien plus qu'une simple préparation culinaire – c'est
+              un art, une science et une forme d'expression".</strong>
+          <br />
+          <h2 className="font-bold underline">Notre Histoire</h2>
+          <p className="fs-4">
             Story Délice est né d'une passion partagée pour la pâtisserie et l'art culinaire. Fondé en 2020 par deux
             amis d'enfance passionnés de cuisine, notre blog s'est donné pour mission de rendre la pâtisserie accessible
             à tous, des débutants aux plus expérimentés.
@@ -32,29 +35,27 @@ function About() {
             recettes testées et approuvées, des astuces de professionnels et des techniques pour vous aider à créer des
             desserts délicieux chez vous.
           </p>
-
-          <h2>Notre Philosophie</h2>
+          <br />
           <p>
-            Chez Story Délice, nous croyons que la pâtisserie est bien plus qu'une simple préparation culinaire – c'est
-            un art, une science et une forme d'expression. Notre philosophie repose sur trois piliers fondamentaux :
+            Reposant sur trois piliers fondamentaux :
           </p>
 
-          <ul>
+          <ul className="list-disc list-inside">
             <li>
-              <strong>Accessibilité</strong> : Nous nous efforçons de rendre la pâtisserie accessible à tous, en
+              <strong className="text-pink-500">Accessibilité</strong> : Nous nous efforçons de rendre la pâtisserie accessible à tous, en
               proposant des recettes claires, des instructions détaillées et des astuces pratiques.
             </li>
             <li>
-              <strong>Qualité</strong> : Chaque recette publiée sur notre blog est méticuleusement testée pour garantir
+              <strong className="text-pink-500">Qualité</strong> : Chaque recette publiée sur notre blog est méticuleusement testée pour garantir
               sa réussite dans votre cuisine.
             </li>
             <li>
-              <strong>Créativité</strong> : Nous encourageons l'innovation et la personnalisation, en vous donnant les
+              <strong className="text-pink-500">Créativité</strong> : Nous encourageons l'innovation et la personnalisation, en vous donnant les
               bases pour ensuite laisser libre cours à votre imagination.
             </li>
           </ul>
-
-          <h2>Notre Équipe</h2>
+          <br/>
+          <h2 className="font-bold underline text-xl">Notre Équipe</h2>
           <p>
             Derrière Story Délice se cache une petite équipe passionnée, composée de pâtissiers amateurs et
             professionnels, de photographes culinaires et de rédacteurs gourmands. Ensemble, nous travaillons pour vous
@@ -72,7 +73,7 @@ function About() {
                 />
               </div>
               <h3 className="font-bold text-xl">MESMINE Ornela</h3>
-              <p className="text-pink-500">Chef Pâtissière</p>
+              <p className="text-pink-500">Chef Pâtissière & Developper</p>
             </div>
 
             <div className="text-center">
@@ -109,7 +110,7 @@ function About() {
                 />
               </div>
               <h3 className="font-bold text-xl">MAXENCE Schineider</h3>
-              <p className="text-pink-500">Graphic Design</p>
+              <p className="text-pink-500">Graphic Design & Montage vidéo</p>
             </div>
             <div className="text-center">
               <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
@@ -120,8 +121,8 @@ function About() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <h3 className="font-bold text-xl">MAXENCE Schineider</h3>
-              <p className="text-pink-500">Graphic Design</p>
+              <h3 className="font-bold text-xl">NGUELA Zidane</h3>
+              <p className="text-pink-500">Developper & Community Manager</p>
             </div>
           </div>
 
