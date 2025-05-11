@@ -38,16 +38,14 @@ function Footer() {
 
           <div>
             <h3 className="font-bold text-lg mb-4">Suivez-nous</h3>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-gray-600 hover:text-pink-500 transition-colors">
-                Facebook
-              </Link>
-              <Link href="#" className="text-gray-600 hover:text-pink-500 transition-colors">
-                Instagram
-              </Link>
-              <Link href="#" className="text-gray-600 hover:text-pink-500 transition-colors">
-                Pinterest
-              </Link>
+            <div className="flex space-x-2 justify-start">
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+              <a href="#" className="bi bi-facebook p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
+              <a href="#" className="bi bi-instagram p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
+              {/* <a href="#" className="p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
+              Pinterest
+            </a> */}
+              <a href="#" className="bi bi-youtube p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
             </div>
           </div>
         </div>

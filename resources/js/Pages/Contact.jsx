@@ -156,20 +156,14 @@ function Contact() {
           <p className="text-gray-600 mb-6">
             Restez connecté avec nous sur les réseaux sociaux pour découvrir nos dernières recettes et actualités.
           </p>
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center space-x-8">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
-            <a href="#" className="bi bi-facebook p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
-              Facebook <i className="bi bi-facebook"></i>
-            </a>
-            <a href="#" className="bi bi-instagram p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
-              Instagram <i className="bi bi-instagram"></i>
-            </a>
+            <a href="#" className="bi bi-facebook p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
+            <a href="#" className="bi bi-instagram p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
             {/* <a href="#" className="p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
               Pinterest
             </a> */}
-            <a href="#" className="bi bi-youtube p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
-              YouTube <i className="bi bi-youtube"></i>
-            </a>
+            <a href="#" className="bi bi-youtube p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
           </div>
         </div>
       </div>

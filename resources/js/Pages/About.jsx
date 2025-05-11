@@ -65,10 +65,10 @@ function About() {
             <div className="text-center">
               <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
                 <img
-                  src="/placeholder.svg?height=200&width=200"
+                  src="/images/mesmine.jpg?height=200&width=200"
                   alt="MESMINE Ornela - Chef Pâtissière"
                   fill
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
               <h3 className="font-bold text-xl">MESMINE Ornela</h3>
@@ -78,10 +78,10 @@ function About() {
             <div className="text-center">
               <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
                 <img
-                  src="/placeholder.svg?height=200&width=200"
+                  src="/images/maxence.jpg?height=200&width=200"
                   alt="MAXENCE Schineider - Graphic Design"
                   fill
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
               <h3 className="font-bold text-xl">MAXENCE Schineider</h3>
@@ -90,10 +90,10 @@ function About() {
             <div className="text-center">
               <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
                 <img
-                  src="/placeholder.svg?height=200&width=200"
+                  src="/images/dimitry.jpg?height=200&width=200"
                   alt="SONWA Dimitry - Developper"
                   fill
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
               <h3 className="font-bold text-xl">SONWA Dimitry</h3>
@@ -102,10 +102,10 @@ function About() {
             <div className="text-center">
               <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
                 <img
-                  src="/placeholder.svg?height=200&width=200"
+                  src="/images/fs.jpg?height=200&width=200"
                   alt="MAXENCE Schineider - Graphic Design"
                   fill
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
               <h3 className="font-bold text-xl">MAXENCE Schineider</h3>
@@ -114,10 +114,10 @@ function About() {
             <div className="text-center">
               <div className="relative h-[200px] mb-4 rounded-full overflow-hidden w-[200px] mx-auto">
                 <img
-                  src="/placeholder.svg?height=200&width=200"
+                  src="/images/zizou.jpg?height=200&width=200"
                   alt="MAXENCE Schineider - Graphic Design"
                   fill
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               </div>
               <h3 className="font-bold text-xl">MAXENCE Schineider</h3>
