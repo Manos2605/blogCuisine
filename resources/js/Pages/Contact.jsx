@@ -150,22 +150,6 @@ function Contact() {
             </button>
           </form>
         </div>
-
-        <div className="bg-custom-pink-100  rounded-xl p-6 text-center">
-          <h2 className="text-2xl font-bold mb-4">Suivez-nous</h2>
-          <p className="text-gray-600 mb-6">
-            Restez connecté avec nous sur les réseaux sociaux pour découvrir nos dernières recettes et actualités.
-          </p>
-          <div className="flex justify-center space-x-8">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
-            <a href="#" className="bi bi-facebook p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
-            <a href="#" className="bi bi-instagram p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
-            {/* <a href="#" className="p-3 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow">
-              Pinterest
-            </a> */}
-            <a href="#" className="bi bi-youtube p-4 rounded-full bg-white shadow-sm hover:shadow-md transition-shadow"></a>
-          </div>
-        </div>
       </div>
     </div>
   )

@@ -84,20 +84,24 @@ const categories = [
 function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <section className="bg-pink-50 rounded-xl p-8 mb-12">
+      <section className="bg-gradient-to-br from-pink-50 via-pink-100 to-pink-200 rounded-xl p-8 mb-12 shadow-lg">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="md:w-1/2">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Découvrez l'Art de la Pâtisserie</h1>
-            <p className="text-lg text-gray-700 mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-secondary animate-fade-in">
+              Découvrez l'Art de la Pâtisserie
+            </h1>
+            <p className="text-base sm:text-lg text-gray-700 mb-6 animate-slide-in">
               Bienvenue sur Story Délice, votre source d'inspiration pour des recettes de pâtisserie délicieuses et
               créatives.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded outline hover:bg-pink-600">
+              <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded outline hover:bg-pink-600 transition-transform transform hover:scale-105">
                 Découvrir nos recettes
               </button>
-              <Link href={route('login')} className="border border-primary text-primary hover:bg-pink-100 px-4 py-2 rounded">
+              <Link
+                href={route('login')}
+                className="border border-primary text-primary hover:bg-pink-100 px-4 py-2 rounded transition-transform transform hover:scale-105"
+              >
                 Se connecter
               </Link>
             </div>
@@ -108,7 +112,7 @@ function Home() {
               alt="Délicieuses pâtisseries"
               width={600}
               height={400}
-              className="rounded-lg shadow-md"
+              className="rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 w-full h-auto"
             />
           </div>
         </div>
@@ -117,30 +121,32 @@ function Home() {
       {/* Featured Recipes */}
       <section className="mb-12">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold">Recettes Populaires</h2>
-          <Link to="/recipes" className="text-primary hover:underline">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Recettes Populaires</h2>
+          <Link to="/recipes" className="text-primary hover:underline text-sm sm:text-base">
             Voir toutes les recettes
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featuredRecipes.map((recipe) => (
             <div
               key={recipe.id}
-              className="overflow-hidden hover:shadow-lg transition-shadow border border-primary/10 rounded-lg"
+              className="overflow-hidden hover:shadow-lg transition-shadow border border-primary/10 rounded-lg group"
             >
-              <div className="relative h-48">
+              <div className="relative h-48 sm:h-56">
                 <img
                   src={recipe.image || "/placeholder.svg"}
                   alt={recipe.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
                 />
-                <div className="absolute top-2 right-2 bg-primary text-white px-2 py-1 rounded text-sm">
+                <div className="absolute top-2 right-2 bg-primary text-white px-2 py-1 rounded text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {recipe.category}
                 </div>
               </div>
               <div className="p-4">
-                <h3 className="text-xl text-secondary font-bold">{recipe.title}</h3>
+                <h3 className="text-lg sm:text-xl text-secondary font-bold group-hover:text-primary transition-colors duration-300">
+                  {recipe.title}
+                </h3>
                 <p className="text-gray-600 text-sm my-2">{recipe.description}</p>
                 <div className="flex flex-wrap gap-2 text-xs text-gray-500 mb-4">
                   <span>Difficulté: {recipe.difficulty}</span>
@@ -149,7 +155,7 @@ function Home() {
                   <span>•</span>
                   <span>Cuisson: {recipe.cookTime}</span>
                 </div>
-                <Link 
+                <Link
                   href={`/recipes/${recipe.id}`}
                   className="text-primary hover:underline text-sm font-medium"
                 >
@@ -163,35 +169,41 @@ function Home() {
 
       {/* Categories */}
       <section className="mb-12">
-        <h2 className="text-2xl md:text-3xl font-bold mb-6 text-secondary">Catégories</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-secondary">Catégories</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {categories.map((category) => (
             <Link
               key={category.id}
               to={`/categories/${category.id}`}
-              className="bg-pink-100 border border-gray-200 rounded-lg p-4 text-center hover:border-pink-300 hover:shadow-md transition-all"
+              className="bg-gradient-to-br from-pink-100 via-pink-200 to-pink-300 border border-gray-200 rounded-lg p-4 text-center hover:shadow-lg hover:scale-105 transition-transform duration-300 ease-out"
             >
-              <h3 className="font-medium mb-1 text-secondary">{category.name}</h3>
-              <p className="text-sm text-gray-500">{category.count} recettes</p>
+              <h3 className="font-medium mb-1 text-secondary group-hover:text-primary transition-colors duration-300">
+                {category.name}
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+                {category.count} recettes
+              </p>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Newsletter */}
+      {/* Newsletter Subscription */}
       <section className="bg-accent rounded-xl p-8">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-secondary">Abonnez-vous à notre newsletter</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-secondary">Abonnez-vous à notre newsletter</h2>
+          <p className="text-gray-600 mb-6 text-sm sm:text-base">
             Recevez nos nouvelles recettes et astuces de pâtisserie directement dans votre boîte mail.
           </p>
           <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Votre adresse email"
-              className="flex-grow px-4 py-2 rounded border border-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="flex-grow px-4 py-2 rounded border border-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm sm:text-base"
             />
-            <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded">S'abonner</button>
+            <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded text-sm sm:text-base">
+              S'abonner
+            </button>
           </div>
         </div>
       </section>

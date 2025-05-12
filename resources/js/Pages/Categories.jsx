@@ -63,33 +63,32 @@ const categories = [
 function Categories() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl md:text-4xl font-bold mb-6">Catégories de Recettes</h1>
-      <p className="text-gray-600 mb-8 max-w-3xl">
-        Explorez notre collection de recettes de pâtisserie classées par catégories. Des tartes aux gâteaux, en passant
-        par les petites douceurs et les desserts de fêtes, trouvez l'inspiration pour votre prochaine création sucrée.
+      <h1 className="text-4xl font-extrabold text-center mb-8">Catégories de Recettes</h1>
+      <p className="text-gray-700 text-center mb-12 max-w-2xl mx-auto">
+        Découvrez nos délicieuses catégories de recettes pâtissières. Que vous soyez amateur de tartes, de gâteaux ou de viennoiseries, laissez-vous inspirer par nos suggestions sucrées.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {categories.map((category) => (
           <Link
             key={category.id}
             to={`/categories/${category.id}`}
-            className="group overflow-hidden rounded-xl border border-gray-200 hover:shadow-lg transition-all"
+            className="group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:scale-105"
           >
-            <div className="relative h-48">
+            <div className="relative h-56">
               <img
                 src={category.image || "/placeholder.svg"}
                 alt={category.name}
-                className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <h2 className="text-xl font-bold">{category.name}</h2>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              <div className="absolute bottom-4 left-4 text-white">
+                <h2 className="text-2xl font-semibold">{category.name}</h2>
                 <p className="text-sm">{category.count} recettes</p>
               </div>
             </div>
-            <div className="p-4">
-              <p className="text-gray-600">{category.description}</p>
+            <div className="p-6 bg-white">
+              <p className="text-gray-600 text-sm">{category.description}</p>
             </div>
           </Link>
         ))}
