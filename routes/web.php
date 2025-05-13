@@ -38,4 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::post('/recipes/{id}/like', [RecipeController::class, 'like'])->name('recipes.like');
+Route::post('/recipes/{id}/comment', [RecipeController::class, 'comment'])->name('recipes.comment');
+
 require __DIR__.'/auth.php';

@@ -21,6 +21,7 @@ class Recipe extends Model
         'author',
         'author_image',
         'date',
+        'likes'
     ];
 
     protected $casts = [
@@ -28,4 +29,24 @@ class Recipe extends Model
         'steps' => 'array',
         'tips' => 'array',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(RecipeLike::class);
+    }
+
+    public function userLikes()
+    {
+        return $this->hasMany(RecipeLike::class)->where('is_liked', true);
+    }
+
+    public function userDislikes()
+    {
+        return $this->hasMany(RecipeLike::class)->where('is_liked', false);
+    }
 }

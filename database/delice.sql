@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 11 mai 2025 à 20:43
+-- Généré le : mar. 13 mai 2025 à 19:42
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -35,6 +35,14 @@ CREATE TABLE `cache` (
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('laravel_cache_sonwadimitry26@gmail.com|127.0.0.1', 'i:2;', 1747156864),
+('laravel_cache_sonwadimitry26@gmail.com|127.0.0.1:timer', 'i:1747156864;', 1747156864);
+
 -- --------------------------------------------------------
 
 --
@@ -58,6 +66,36 @@ CREATE TABLE `categories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `recipe_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `comments`
+--
+
+INSERT INTO `comments` (`id`, `recipe_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, 'fghb', '2025-05-13 16:23:15', '2025-05-13 16:23:15'),
+(2, 2, 2, 'très bon', '2025-05-13 16:35:14', '2025-05-13 16:35:14'),
+(3, 2, 2, 'très bon', '2025-05-13 16:35:18', '2025-05-13 16:35:18'),
+(4, 2, 2, 'très bon', '2025-05-13 16:35:22', '2025-05-13 16:35:22'),
+(5, 2, 2, 'humm', '2025-05-13 16:37:24', '2025-05-13 16:37:24'),
+(6, 2, 2, 'hum', '2025-05-13 16:39:35', '2025-05-13 16:39:35'),
+(7, 2, 2, 'hum', '2025-05-13 16:39:45', '2025-05-13 16:39:45'),
+(8, 2, 2, 'j\'aime', '2025-05-13 16:39:56', '2025-05-13 16:39:56'),
+(9, 1, 3, 'on aime vraiment vos recettes', '2025-05-13 16:41:39', '2025-05-13 16:41:39');
 
 -- --------------------------------------------------------
 
@@ -145,7 +183,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2024_03_19_000000_create_recipes_table', 1),
 (5, '2025_04_09_073918_create_categories_table', 1),
 (6, '2025_04_09_073919_create_ingredients_table', 1),
-(7, '2025_04_09_073920_create_steps_table', 1);
+(7, '2025_04_09_073920_create_steps_table', 1),
+(8, '2025_05_13_170157_add_likes_to_recipes_table', 2),
+(9, '2025_05_13_170158_create_comments_table', 2),
+(10, '2024_03_20_000000_create_recipe_likes_table', 3);
 
 -- --------------------------------------------------------
 
@@ -182,20 +223,46 @@ CREATE TABLE `recipes` (
   `author_image` varchar(255) DEFAULT NULL,
   `date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `likes` int(10) UNSIGNED NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `recipes`
 --
 
-INSERT INTO `recipes` (`id`, `title`, `description`, `image`, `category`, `difficulty`, `prep_time`, `cook_time`, `servings`, `ingredients`, `steps`, `tips`, `author`, `author_image`, `date`, `created_at`, `updated_at`) VALUES
-(1, 'Tarte aux Fraises', 'Une délicieuse tarte aux fraises fraîches sur une crème pâtissière onctueuse.', '/images/placeholder.jpg', 'Tartes', 'Facile', 30, 25, 8, '\"[\\\"1 p\\\\u00e2te sabl\\\\u00e9e\\\",\\\"500g de fraises fra\\\\u00eeches\\\",\\\"50cl de lait entier\\\",\\\"4 jaunes d\'\\\\u0153ufs\\\",\\\"100g de sucre\\\",\\\"40g de farine\\\",\\\"1 gousse de vanille\\\",\\\"20g de beurre\\\",\\\"Quelques feuilles de menthe pour la d\\\\u00e9coration\\\"]\"', '\"[\\\"\\\\u00c9taler la p\\\\u00e2te sabl\\\\u00e9e dans un moule\\\",\\\"Pr\\\\u00e9parer la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"Laver et couper les fraises\\\",\\\"Assembler la tarte\\\",\\\"D\\\\u00e9corer avec les fraises et la menthe\\\"]\"', '\"[\\\"Utiliser des fraises bien m\\\\u00fbres\\\",\\\"Laisser refroidir la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re avant montage\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10'),
-(2, 'Macarons à la Vanille', 'Des macarons parfaitement croustillants à l\'extérieur et moelleux à l\'intérieur.', '/images/placeholder.jpg', 'Petits Gâteaux', 'Intermédiaire', 45, 15, 20, '\"[\\\"200g de poudre d\'amandes\\\",\\\"200g de sucre glace\\\",\\\"75g de blancs d\'\\\\u0153ufs\\\",\\\"200g de sucre\\\",\\\"50g d\'eau\\\",\\\"1 gousse de vanille\\\"]\"', '\"[\\\"Tamiser la poudre d\'amandes et le sucre glace\\\",\\\"Pr\\\\u00e9parer la meringue italienne\\\",\\\"Macaronner la p\\\\u00e2te\\\",\\\"Dresser les coques\\\",\\\"Cuire \\\\u00e0 150\\\\u00b0C\\\"]\"', '\"[\\\"Laisser cro\\\\u00fbter les macarons avant cuisson\\\",\\\"Surveiller attentivement la cuisson\\\"]\"', 'Chef Pierre', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10'),
-(3, 'Éclair au Chocolat', 'Un classique de la pâtisserie française avec une ganache au chocolat intense.', '/images/placeholder.jpg', 'Pâtisseries Françaises', 'Intermédiaire', 40, 30, 8, '\"[\\\"250ml d\'eau\\\",\\\"100g de beurre\\\",\\\"150g de farine\\\",\\\"4 \\\\u0153ufs\\\",\\\"200g de chocolat noir\\\",\\\"200ml de cr\\\\u00e8me liquide\\\"]\"', '\"[\\\"Pr\\\\u00e9parer la p\\\\u00e2te \\\\u00e0 choux\\\",\\\"Former les \\\\u00e9clairs\\\",\\\"Cuire \\\\u00e0 180\\\\u00b0C\\\",\\\"Pr\\\\u00e9parer la ganache\\\",\\\"Garnir les \\\\u00e9clairs\\\"]\"', '\"[\\\"Ne pas ouvrir le four pendant la cuisson\\\",\\\"Laisser refroidir avant de garnir\\\"]\"', 'Chef Sophie', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10'),
-(4, 'Cheesecake New-Yorkais', 'Un cheesecake crémeux avec une base de biscuits croquante et une touche de citron.', '/images/placeholder.jpg', 'Gâteaux', 'Facile', 20, 50, 12, '\"[\\\"300g de biscuits sp\\\\u00e9culoos\\\",\\\"150g de beurre fondu\\\",\\\"750g de cream cheese\\\",\\\"200g de sucre\\\",\\\"3 \\\\u0153ufs\\\",\\\"200ml de cr\\\\u00e8me fra\\\\u00eeche\\\",\\\"1 citron\\\"]\"', '\"[\\\"Pr\\\\u00e9parer la base biscuit\\\\u00e9e\\\",\\\"M\\\\u00e9langer la garniture\\\",\\\"Cuire au bain-marie\\\",\\\"Laisser refroidir\\\",\\\"R\\\\u00e9frig\\\\u00e9rer 4 heures\\\"]\"', '\"[\\\"Sortir les ingr\\\\u00e9dients \\\\u00e0 temp\\\\u00e9rature ambiante\\\",\\\"Utiliser un moule \\\\u00e0 charni\\\\u00e8re\\\"]\"', 'Chef John', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10'),
-(5, 'Mille-feuille', 'Couches de pâte feuilletée croustillante et de crème pâtissière à la vanille.', '/images/placeholder.jpg', 'Pâtisseries Françaises', 'Avancé', 60, 25, 6, '\"[\\\"2 p\\\\u00e2tes feuillet\\\\u00e9es\\\",\\\"1L de lait\\\",\\\"8 jaunes d\'\\\\u0153ufs\\\",\\\"250g de sucre\\\",\\\"100g de farine\\\",\\\"2 gousses de vanille\\\",\\\"Sucre glace\\\"]\"', '\"[\\\"Cuire la p\\\\u00e2te feuillet\\\\u00e9e\\\",\\\"Pr\\\\u00e9parer la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"D\\\\u00e9couper les rectangles\\\",\\\"Monter les mille-feuilles\\\",\\\"Glacer au sucre glace\\\"]\"', '\"[\\\"Bien refroidir la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"D\\\\u00e9couper la p\\\\u00e2te encore chaude\\\"]\"', 'Chef Michel', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10'),
-(6, 'Cookies aux Pépites de Chocolat', 'Des cookies moelleux avec des pépites de chocolat fondantes.', '/images/placeholder.jpg', 'Biscuits', 'Facile', 15, 12, 20, '\"[\\\"250g de farine\\\",\\\"150g de beurre mou\\\",\\\"150g de sucre roux\\\",\\\"1 \\\\u0153uf\\\",\\\"200g de p\\\\u00e9pites de chocolat\\\",\\\"1 sachet de levure chimique\\\",\\\"1 pinc\\\\u00e9e de sel\\\"]\"', '\"[\\\"M\\\\u00e9langer le beurre et le sucre\\\",\\\"Ajouter l\'\\\\u0153uf\\\",\\\"Incorporer les ingr\\\\u00e9dients secs\\\",\\\"Former les cookies\\\",\\\"Cuire \\\\u00e0 180\\\\u00b0C\\\"]\"', '\"[\\\"Laisser reposer la p\\\\u00e2te au frais\\\",\\\"Ne pas trop cuire pour des cookies moelleux\\\"]\"', 'Chef Sarah', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10');
+INSERT INTO `recipes` (`id`, `title`, `description`, `image`, `category`, `difficulty`, `prep_time`, `cook_time`, `servings`, `ingredients`, `steps`, `tips`, `author`, `author_image`, `date`, `created_at`, `updated_at`, `likes`) VALUES
+(1, 'Tarte aux Fraises', 'Une délicieuse tarte aux fraises fraîches sur une crème pâtissière onctueuse.', '/images/placeholder.jpg', 'Tartes', 'Facile', 30, 25, 8, '\"[\\\"1 p\\\\u00e2te sabl\\\\u00e9e\\\",\\\"500g de fraises fra\\\\u00eeches\\\",\\\"50cl de lait entier\\\",\\\"4 jaunes d\'\\\\u0153ufs\\\",\\\"100g de sucre\\\",\\\"40g de farine\\\",\\\"1 gousse de vanille\\\",\\\"20g de beurre\\\",\\\"Quelques feuilles de menthe pour la d\\\\u00e9coration\\\"]\"', '\"[\\\"\\\\u00c9taler la p\\\\u00e2te sabl\\\\u00e9e dans un moule\\\",\\\"Pr\\\\u00e9parer la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"Laver et couper les fraises\\\",\\\"Assembler la tarte\\\",\\\"D\\\\u00e9corer avec les fraises et la menthe\\\"]\"', '\"[\\\"Utiliser des fraises bien m\\\\u00fbres\\\",\\\"Laisser refroidir la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re avant montage\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-13 16:17:08', 1),
+(2, 'Macarons à la Vanille', 'Des macarons parfaitement croustillants à l\'extérieur et moelleux à l\'intérieur.', '/images/placeholder.jpg', 'Petits Gâteaux', 'Intermédiaire', 45, 15, 20, '\"[\\\"200g de poudre d\'amandes\\\",\\\"200g de sucre glace\\\",\\\"75g de blancs d\'\\\\u0153ufs\\\",\\\"200g de sucre\\\",\\\"50g d\'eau\\\",\\\"1 gousse de vanille\\\"]\"', '\"[\\\"Tamiser la poudre d\'amandes et le sucre glace\\\",\\\"Pr\\\\u00e9parer la meringue italienne\\\",\\\"Macaronner la p\\\\u00e2te\\\",\\\"Dresser les coques\\\",\\\"Cuire \\\\u00e0 150\\\\u00b0C\\\"]\"', '\"[\\\"Laisser cro\\\\u00fbter les macarons avant cuisson\\\",\\\"Surveiller attentivement la cuisson\\\"]\"', 'Chef Pierre', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0),
+(3, 'Éclair au Chocolat', 'Un classique de la pâtisserie française avec une ganache au chocolat intense.', '/images/placeholder.jpg', 'Pâtisseries Françaises', 'Intermédiaire', 40, 30, 8, '\"[\\\"250ml d\'eau\\\",\\\"100g de beurre\\\",\\\"150g de farine\\\",\\\"4 \\\\u0153ufs\\\",\\\"200g de chocolat noir\\\",\\\"200ml de cr\\\\u00e8me liquide\\\"]\"', '\"[\\\"Pr\\\\u00e9parer la p\\\\u00e2te \\\\u00e0 choux\\\",\\\"Former les \\\\u00e9clairs\\\",\\\"Cuire \\\\u00e0 180\\\\u00b0C\\\",\\\"Pr\\\\u00e9parer la ganache\\\",\\\"Garnir les \\\\u00e9clairs\\\"]\"', '\"[\\\"Ne pas ouvrir le four pendant la cuisson\\\",\\\"Laisser refroidir avant de garnir\\\"]\"', 'Chef Sophie', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0),
+(4, 'Cheesecake New-Yorkais', 'Un cheesecake crémeux avec une base de biscuits croquante et une touche de citron.', '/images/placeholder.jpg', 'Gâteaux', 'Facile', 20, 50, 12, '\"[\\\"300g de biscuits sp\\\\u00e9culoos\\\",\\\"150g de beurre fondu\\\",\\\"750g de cream cheese\\\",\\\"200g de sucre\\\",\\\"3 \\\\u0153ufs\\\",\\\"200ml de cr\\\\u00e8me fra\\\\u00eeche\\\",\\\"1 citron\\\"]\"', '\"[\\\"Pr\\\\u00e9parer la base biscuit\\\\u00e9e\\\",\\\"M\\\\u00e9langer la garniture\\\",\\\"Cuire au bain-marie\\\",\\\"Laisser refroidir\\\",\\\"R\\\\u00e9frig\\\\u00e9rer 4 heures\\\"]\"', '\"[\\\"Sortir les ingr\\\\u00e9dients \\\\u00e0 temp\\\\u00e9rature ambiante\\\",\\\"Utiliser un moule \\\\u00e0 charni\\\\u00e8re\\\"]\"', 'Chef John', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0),
+(5, 'Mille-feuille', 'Couches de pâte feuilletée croustillante et de crème pâtissière à la vanille.', '/images/placeholder.jpg', 'Pâtisseries Françaises', 'Avancé', 60, 25, 6, '\"[\\\"2 p\\\\u00e2tes feuillet\\\\u00e9es\\\",\\\"1L de lait\\\",\\\"8 jaunes d\'\\\\u0153ufs\\\",\\\"250g de sucre\\\",\\\"100g de farine\\\",\\\"2 gousses de vanille\\\",\\\"Sucre glace\\\"]\"', '\"[\\\"Cuire la p\\\\u00e2te feuillet\\\\u00e9e\\\",\\\"Pr\\\\u00e9parer la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"D\\\\u00e9couper les rectangles\\\",\\\"Monter les mille-feuilles\\\",\\\"Glacer au sucre glace\\\"]\"', '\"[\\\"Bien refroidir la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"D\\\\u00e9couper la p\\\\u00e2te encore chaude\\\"]\"', 'Chef Michel', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0),
+(6, 'Cookies aux Pépites de Chocolat', 'Des cookies moelleux avec des pépites de chocolat fondantes.', '/images/placeholder.jpg', 'Biscuits', 'Facile', 15, 12, 20, '\"[\\\"250g de farine\\\",\\\"150g de beurre mou\\\",\\\"150g de sucre roux\\\",\\\"1 \\\\u0153uf\\\",\\\"200g de p\\\\u00e9pites de chocolat\\\",\\\"1 sachet de levure chimique\\\",\\\"1 pinc\\\\u00e9e de sel\\\"]\"', '\"[\\\"M\\\\u00e9langer le beurre et le sucre\\\",\\\"Ajouter l\'\\\\u0153uf\\\",\\\"Incorporer les ingr\\\\u00e9dients secs\\\",\\\"Former les cookies\\\",\\\"Cuire \\\\u00e0 180\\\\u00b0C\\\"]\"', '\"[\\\"Laisser reposer la p\\\\u00e2te au frais\\\",\\\"Ne pas trop cuire pour des cookies moelleux\\\"]\"', 'Chef Sarah', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `recipe_likes`
+--
+
+CREATE TABLE `recipe_likes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `recipe_id` bigint(20) UNSIGNED NOT NULL,
+  `is_liked` tinyint(1) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `recipe_likes`
+--
+
+INSERT INTO `recipe_likes` (`id`, `user_id`, `recipe_id`, `is_liked`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, '2025-05-13 16:20:38', '2025-05-13 16:33:33'),
+(2, 2, 2, 1, '2025-05-13 16:29:46', '2025-05-13 16:40:08'),
+(3, 3, 1, 1, '2025-05-13 16:41:25', '2025-05-13 16:41:25'),
+(4, 3, 2, 1, '2025-05-13 16:41:55', '2025-05-13 16:41:55');
 
 -- --------------------------------------------------------
 
@@ -217,7 +284,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('TJKiK9hghIbUsZmnx4p48w6NpOwTjvBmZjYhVSy3', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiS1NCRkdvVGYwQm1IT0tncmdicUY1Wkx0MEI5T2ZhNjh0cmVsbW1xZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hYm91dCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1746794068);
+('MxyWunGo0dENl6Gp4sEJyveCmwPej4bZH6Mw81oE', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWXRBZjVZSnBKY0F4SXoxVVNlQXFqNGczeFB1WnVMa2R5NXhiRDA2cSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1747158115);
 
 -- --------------------------------------------------------
 
@@ -253,7 +320,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Test User', 'test@example.com', '2025-05-09 11:20:09', '$2y$12$wjkwTDmeWcVvB1figArnwePl6d6r.UnEB2VnL4bY5h.4RyBW24nXa', 'yQjk5lxPc6', '2025-05-09 11:20:10', '2025-05-09 11:20:10');
+(1, 'Test User', 'test@example.com', '2025-05-09 11:20:09', '$2y$12$wjkwTDmeWcVvB1figArnwePl6d6r.UnEB2VnL4bY5h.4RyBW24nXa', 'yQjk5lxPc6', '2025-05-09 11:20:10', '2025-05-09 11:20:10'),
+(2, 'Dimitry Brayan Sonwa Doumtsop', 'sonwadimitry26@gmail.com', NULL, '$2y$12$AWID4KRYeghhSTdn9Gm0BeePvPgHjCUeAhSIIBQikPBJKJc6WqtQm', NULL, '2025-05-13 16:20:30', '2025-05-13 16:20:30'),
+(3, 'brayan', 'brayandoumtsop12@gmail.com', NULL, '$2y$12$WDeMAI0bCKrPCdi2WUIrp.5lSbwA7Sv7i2y8CJYXvI68Msqm7kqlK', NULL, '2025-05-13 16:41:10', '2025-05-13 16:41:10');
 
 --
 -- Index pour les tables déchargées
@@ -276,6 +345,14 @@ ALTER TABLE `cache_locks`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comments_recipe_id_foreign` (`recipe_id`),
+  ADD KEY `comments_user_id_foreign` (`user_id`);
 
 --
 -- Index pour la table `failed_jobs`
@@ -322,6 +399,14 @@ ALTER TABLE `recipes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `recipe_likes`
+--
+ALTER TABLE `recipe_likes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `recipe_likes_user_id_recipe_id_unique` (`user_id`,`recipe_id`),
+  ADD KEY `recipe_likes_recipe_id_foreign` (`recipe_id`);
+
+--
 -- Index pour la table `sessions`
 --
 ALTER TABLE `sessions`
@@ -353,6 +438,12 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT pour la table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -374,13 +465,19 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `recipes`
 --
 ALTER TABLE `recipes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `recipe_likes`
+--
+ALTER TABLE `recipe_likes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `steps`
@@ -392,7 +489,25 @@ ALTER TABLE `steps`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_recipe_id_foreign` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `recipe_likes`
+--
+ALTER TABLE `recipe_likes`
+  ADD CONSTRAINT `recipe_likes_recipe_id_foreign` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `recipe_likes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 --
 -- Base de données : `phpmyadmin`
 --
@@ -656,7 +771,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2025-05-11 18:37:57', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"fr\"}');
+('root', '2025-05-13 17:42:22', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"fr\"}');
 
 -- --------------------------------------------------------
 
@@ -825,7 +940,7 @@ ALTER TABLE `pma__column_info`
 -- AUTO_INCREMENT pour la table `pma__export_templates`
 --
 ALTER TABLE `pma__export_templates`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `pma__history`

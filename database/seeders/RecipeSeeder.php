@@ -108,8 +108,8 @@ class RecipeSeeder extends Seeder
                 'author' => 'Chef Sophie',
                 'author_image' => '/images/placeholder-author.jpg',
                 'date' => now()
-            ],
-            [
+                    ],
+                    [
                 'title' => 'Cheesecake New-Yorkais',
                 'description' => 'Un cheesecake crémeux avec une base de biscuits croquante et une touche de citron.',
                 'image' => '/images/placeholder.jpg',
