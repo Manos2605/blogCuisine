@@ -73,7 +73,11 @@ class RecipeController extends Controller
     public function like($id)
     {
         if (!Auth::check()) {
-            return response()->json(['error' => 'Vous devez être connecté pour liker une recette'], 401);
+            return response()->json([
+                'error' => 'Pour liker cette recette, connectez-vous à votre compte',
+                'action' => 'login',
+                'message' => 'Rejoignez notre communauté de passionnés de pâtisserie !'
+            ], 401);
         }
 
         $recipe = Recipe::findOrFail($id);
@@ -139,7 +143,11 @@ class RecipeController extends Controller
     public function comment(Request $request, $id)
     {
         if (!Auth::check()) {
-            return response()->json(['error' => 'Vous devez être connecté pour commenter'], 401);
+            return response()->json([
+                'error' => 'Pour commenter cette recette, connectez-vous à votre compte',
+                'action' => 'login',
+                'message' => 'Partagez vos impressions avec notre communauté !'
+            ], 401);
         }
 
         $request->validate([
@@ -197,5 +205,38 @@ class RecipeController extends Controller
         ];
 
         return Inertia::render('RecipeDetail', ['recipe' => $formattedRecipe]);
+    }
+
+    public function byCategory($categoryId)
+    {
+        $categoryMap = [
+            1 => 'Pâtisseries',
+            2 => 'Biscuits',
+            3 => 'Viennoiseries',
+            4 => 'Petits Gâteaux',
+            5 => 'Gâteaux'
+        ];
+
+        $recipes = Recipe::where('category', $categoryMap[$categoryId])->get();
+
+        return Inertia::render('Category', [
+            'categoryId' => $categoryId,
+            'recipes' => $recipes
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        
+        $recipes = Recipe::where('title', 'like', "%{$query}%")
+            ->orWhere('description', 'like', "%{$query}%")
+            ->orWhere('category', 'like', "%{$query}%")
+            ->get();
+
+        return Inertia::render('Search', [
+            'recipes' => $recipes,
+            'query' => $query
+        ]);
     }
 }

@@ -73,6 +73,11 @@ function About() {
                 img: "/images/dimitry.jpg",
               },
               {
+                name: "Tong Meufokou Freedy",
+                role: "Graphic Design & Animateur video",
+                img: "/images/fs.jpg",
+              },
+              {
                 name: "NGUELA Zidane",
                 role: "Developper & Community Manager",
                 img: "/images/zizou.jpg",

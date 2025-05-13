@@ -1,9 +1,21 @@
 import { useState } from "react"
-import { Link } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/react'
 import { AlignJustify, Search } from "lucide-react"
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const { data, setData, get } = useForm({
+    query: ''
+  })
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    if (data.query.trim()) {
+      get(route('recipes.search', { query: data.query }))
+      setIsSearchOpen(false)
+    }
+  }
 
   return (
     <header className="border-b border-primary/20">
@@ -27,7 +39,10 @@ function Header() {
             <Link href="/contact" className="text-lg font-medium hover:text-pink-500 transition-colors">
               Contact
             </Link>
-            <button className="p-2 rounded-full hover:bg-gray-100 transition-colors">
+            <button 
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            >
               <Search className="h-5 w-5" />
             </button>
           </nav>
@@ -65,21 +80,38 @@ function Header() {
                   <Link href="/contact" className="text-lg font-medium hover:text-pink-500 transition-colors">
                     Contact
                   </Link>
-                  <div className="flex items-center mt-4">
-                    <div className="relative">
+                  <div className="w-full mt-4">
+                    <form onSubmit={handleSearch} className="relative">
                       <input
                         type="text"
-                        placeholder="Rechercher..."
-                        className="pl-3 pr-10 py-2 border rounded w-full"
+                        value={data.query}
+                        onChange={e => setData('query', e.target.value)}
+                        placeholder="Rechercher une recette..."
+                        className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                       />
-                      <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    </div>
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    </form>
                   </div>
                 </nav>
               </div>
             )}
           </div>
         </div>
+
+        {isSearchOpen && (
+          <div className="mt-4 animate-fade-in">
+            <form onSubmit={handleSearch} className="relative">
+              <input
+                type="text"
+                value={data.query}
+                onChange={e => setData('query', e.target.value)}
+                placeholder="Rechercher une recette..."
+                className="w-full px-4 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+              />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            </form>
+          </div>
+        )}
       </div>
     </header>
   )

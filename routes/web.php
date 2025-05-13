@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -10,15 +11,13 @@ Route::get('/', function () {
     return Inertia::render('Home');
 })->name('home');
 
-Route::get('/categories', function () {
-    return Inertia::render('Categories');
-})->name('categories');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
-Route::get('/categories/{id}', function ($id) {
-    return Inertia::render('CategoryDetail', ['id' => $id]);
-})->name('category.show');
+Route::get('/categories/{id}', [RecipeController::class, 'byCategory'])->name('categories.show');
 
 Route::get('/recipes/{id}', [RecipeController::class, 'show'])->name('recipe.show');
+
+Route::get('/search', [RecipeController::class, 'search'])->name('recipes.search');
 
 Route::get('/about', function () {
     return Inertia::render('About');

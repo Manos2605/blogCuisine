@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 13 mai 2025 à 19:42
+-- Généré le : mer. 14 mai 2025 à 01:16
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `delice`
 --
-CREATE DATABASE IF NOT EXISTS `delice` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `delice`;
 
 -- --------------------------------------------------------
 
@@ -34,14 +32,6 @@ CREATE TABLE `cache` (
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `cache`
---
-
-INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel_cache_sonwadimitry26@gmail.com|127.0.0.1', 'i:2;', 1747156864),
-('laravel_cache_sonwadimitry26@gmail.com|127.0.0.1:timer', 'i:1747156864;', 1747156864);
 
 -- --------------------------------------------------------
 
@@ -81,21 +71,6 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `comments`
---
-
-INSERT INTO `comments` (`id`, `recipe_id`, `user_id`, `content`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, 'fghb', '2025-05-13 16:23:15', '2025-05-13 16:23:15'),
-(2, 2, 2, 'très bon', '2025-05-13 16:35:14', '2025-05-13 16:35:14'),
-(3, 2, 2, 'très bon', '2025-05-13 16:35:18', '2025-05-13 16:35:18'),
-(4, 2, 2, 'très bon', '2025-05-13 16:35:22', '2025-05-13 16:35:22'),
-(5, 2, 2, 'humm', '2025-05-13 16:37:24', '2025-05-13 16:37:24'),
-(6, 2, 2, 'hum', '2025-05-13 16:39:35', '2025-05-13 16:39:35'),
-(7, 2, 2, 'hum', '2025-05-13 16:39:45', '2025-05-13 16:39:45'),
-(8, 2, 2, 'j\'aime', '2025-05-13 16:39:56', '2025-05-13 16:39:56'),
-(9, 1, 3, 'on aime vraiment vos recettes', '2025-05-13 16:41:39', '2025-05-13 16:41:39');
 
 -- --------------------------------------------------------
 
@@ -181,12 +156,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
 (4, '2024_03_19_000000_create_recipes_table', 1),
-(5, '2025_04_09_073918_create_categories_table', 1),
-(6, '2025_04_09_073919_create_ingredients_table', 1),
-(7, '2025_04_09_073920_create_steps_table', 1),
-(8, '2025_05_13_170157_add_likes_to_recipes_table', 2),
-(9, '2025_05_13_170158_create_comments_table', 2),
-(10, '2024_03_20_000000_create_recipe_likes_table', 3);
+(5, '2024_03_20_000000_create_recipe_likes_table', 1),
+(6, '2025_04_09_073918_create_categories_table', 1),
+(7, '2025_04_09_073919_create_ingredients_table', 1),
+(8, '2025_04_09_073920_create_steps_table', 1),
+(9, '2025_05_13_170157_add_likes_to_recipes_table', 1),
+(10, '2025_05_13_170158_create_comments_table', 1);
 
 -- --------------------------------------------------------
 
@@ -232,12 +207,12 @@ CREATE TABLE `recipes` (
 --
 
 INSERT INTO `recipes` (`id`, `title`, `description`, `image`, `category`, `difficulty`, `prep_time`, `cook_time`, `servings`, `ingredients`, `steps`, `tips`, `author`, `author_image`, `date`, `created_at`, `updated_at`, `likes`) VALUES
-(1, 'Tarte aux Fraises', 'Une délicieuse tarte aux fraises fraîches sur une crème pâtissière onctueuse.', '/images/placeholder.jpg', 'Tartes', 'Facile', 30, 25, 8, '\"[\\\"1 p\\\\u00e2te sabl\\\\u00e9e\\\",\\\"500g de fraises fra\\\\u00eeches\\\",\\\"50cl de lait entier\\\",\\\"4 jaunes d\'\\\\u0153ufs\\\",\\\"100g de sucre\\\",\\\"40g de farine\\\",\\\"1 gousse de vanille\\\",\\\"20g de beurre\\\",\\\"Quelques feuilles de menthe pour la d\\\\u00e9coration\\\"]\"', '\"[\\\"\\\\u00c9taler la p\\\\u00e2te sabl\\\\u00e9e dans un moule\\\",\\\"Pr\\\\u00e9parer la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"Laver et couper les fraises\\\",\\\"Assembler la tarte\\\",\\\"D\\\\u00e9corer avec les fraises et la menthe\\\"]\"', '\"[\\\"Utiliser des fraises bien m\\\\u00fbres\\\",\\\"Laisser refroidir la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re avant montage\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-13 16:17:08', 1),
-(2, 'Macarons à la Vanille', 'Des macarons parfaitement croustillants à l\'extérieur et moelleux à l\'intérieur.', '/images/placeholder.jpg', 'Petits Gâteaux', 'Intermédiaire', 45, 15, 20, '\"[\\\"200g de poudre d\'amandes\\\",\\\"200g de sucre glace\\\",\\\"75g de blancs d\'\\\\u0153ufs\\\",\\\"200g de sucre\\\",\\\"50g d\'eau\\\",\\\"1 gousse de vanille\\\"]\"', '\"[\\\"Tamiser la poudre d\'amandes et le sucre glace\\\",\\\"Pr\\\\u00e9parer la meringue italienne\\\",\\\"Macaronner la p\\\\u00e2te\\\",\\\"Dresser les coques\\\",\\\"Cuire \\\\u00e0 150\\\\u00b0C\\\"]\"', '\"[\\\"Laisser cro\\\\u00fbter les macarons avant cuisson\\\",\\\"Surveiller attentivement la cuisson\\\"]\"', 'Chef Pierre', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0),
-(3, 'Éclair au Chocolat', 'Un classique de la pâtisserie française avec une ganache au chocolat intense.', '/images/placeholder.jpg', 'Pâtisseries Françaises', 'Intermédiaire', 40, 30, 8, '\"[\\\"250ml d\'eau\\\",\\\"100g de beurre\\\",\\\"150g de farine\\\",\\\"4 \\\\u0153ufs\\\",\\\"200g de chocolat noir\\\",\\\"200ml de cr\\\\u00e8me liquide\\\"]\"', '\"[\\\"Pr\\\\u00e9parer la p\\\\u00e2te \\\\u00e0 choux\\\",\\\"Former les \\\\u00e9clairs\\\",\\\"Cuire \\\\u00e0 180\\\\u00b0C\\\",\\\"Pr\\\\u00e9parer la ganache\\\",\\\"Garnir les \\\\u00e9clairs\\\"]\"', '\"[\\\"Ne pas ouvrir le four pendant la cuisson\\\",\\\"Laisser refroidir avant de garnir\\\"]\"', 'Chef Sophie', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0),
-(4, 'Cheesecake New-Yorkais', 'Un cheesecake crémeux avec une base de biscuits croquante et une touche de citron.', '/images/placeholder.jpg', 'Gâteaux', 'Facile', 20, 50, 12, '\"[\\\"300g de biscuits sp\\\\u00e9culoos\\\",\\\"150g de beurre fondu\\\",\\\"750g de cream cheese\\\",\\\"200g de sucre\\\",\\\"3 \\\\u0153ufs\\\",\\\"200ml de cr\\\\u00e8me fra\\\\u00eeche\\\",\\\"1 citron\\\"]\"', '\"[\\\"Pr\\\\u00e9parer la base biscuit\\\\u00e9e\\\",\\\"M\\\\u00e9langer la garniture\\\",\\\"Cuire au bain-marie\\\",\\\"Laisser refroidir\\\",\\\"R\\\\u00e9frig\\\\u00e9rer 4 heures\\\"]\"', '\"[\\\"Sortir les ingr\\\\u00e9dients \\\\u00e0 temp\\\\u00e9rature ambiante\\\",\\\"Utiliser un moule \\\\u00e0 charni\\\\u00e8re\\\"]\"', 'Chef John', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0),
-(5, 'Mille-feuille', 'Couches de pâte feuilletée croustillante et de crème pâtissière à la vanille.', '/images/placeholder.jpg', 'Pâtisseries Françaises', 'Avancé', 60, 25, 6, '\"[\\\"2 p\\\\u00e2tes feuillet\\\\u00e9es\\\",\\\"1L de lait\\\",\\\"8 jaunes d\'\\\\u0153ufs\\\",\\\"250g de sucre\\\",\\\"100g de farine\\\",\\\"2 gousses de vanille\\\",\\\"Sucre glace\\\"]\"', '\"[\\\"Cuire la p\\\\u00e2te feuillet\\\\u00e9e\\\",\\\"Pr\\\\u00e9parer la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"D\\\\u00e9couper les rectangles\\\",\\\"Monter les mille-feuilles\\\",\\\"Glacer au sucre glace\\\"]\"', '\"[\\\"Bien refroidir la cr\\\\u00e8me p\\\\u00e2tissi\\\\u00e8re\\\",\\\"D\\\\u00e9couper la p\\\\u00e2te encore chaude\\\"]\"', 'Chef Michel', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0),
-(6, 'Cookies aux Pépites de Chocolat', 'Des cookies moelleux avec des pépites de chocolat fondantes.', '/images/placeholder.jpg', 'Biscuits', 'Facile', 15, 12, 20, '\"[\\\"250g de farine\\\",\\\"150g de beurre mou\\\",\\\"150g de sucre roux\\\",\\\"1 \\\\u0153uf\\\",\\\"200g de p\\\\u00e9pites de chocolat\\\",\\\"1 sachet de levure chimique\\\",\\\"1 pinc\\\\u00e9e de sel\\\"]\"', '\"[\\\"M\\\\u00e9langer le beurre et le sucre\\\",\\\"Ajouter l\'\\\\u0153uf\\\",\\\"Incorporer les ingr\\\\u00e9dients secs\\\",\\\"Former les cookies\\\",\\\"Cuire \\\\u00e0 180\\\\u00b0C\\\"]\"', '\"[\\\"Laisser reposer la p\\\\u00e2te au frais\\\",\\\"Ne pas trop cuire pour des cookies moelleux\\\"]\"', 'Chef Sarah', '/images/placeholder-author.jpg', '2025-05-09', '2025-05-09 11:20:10', '2025-05-09 11:20:10', 0);
+(1, 'Crêpes sucrées', 'Des crêpes moelleuses et parfumées, parfaites pour le goûter ou le petit-déjeuner.', '/images/placeholder.jpg', 'Pâtisseries', 'Facile', 15, 20, 6, '\"[\\\"4 \\\\u0153ufs\\\",\\\"250g de sucre\\\",\\\"600g de farine (tamis\\\\u00e9e)\\\",\\\"200g de lait concentr\\\\u00e9\\\",\\\"800ml d\'eau\\\",\\\"80ml d\'huile raffin\\\\u00e9e\\\",\\\"Ar\\\\u00f4me au choix\\\"]\"', '\"[\\\"M\\\\u00e9langer dans un r\\\\u00e9cipient, jusqu\'\\\\u00e0 homog\\\\u00e9n\\\\u00e9isation, 4 \\\\u0153ufs et 250g de sucre.\\\",\\\"Ajouter 600g de farine, pr\\\\u00e9alablement tamis\\\\u00e9e.\\\",\\\"Verser 200g de lait concentr\\\\u00e9 dans une marmite, ajouter 800ml d\'eau et poser le m\\\\u00e9lange \\\\u00e0 feu doux pendant 5 min.\\\",\\\"Verser progressivement le lait chauff\\\\u00e9 dans le m\\\\u00e9lange \\\\u0153uf + sucre + farine et m\\\\u00e9langer.\\\",\\\"Ajoutez 80ml d\'huile raffin\\\\u00e9e et m\\\\u00e9langer. Ajouter l\'ar\\\\u00f4me de votre choix et la p\\\\u00e2te est pr\\\\u00eate.\\\",\\\"Cuisson : placer \\\\u00e0 feu moyen une po\\\\u00eale (antiadh\\\\u00e9sive de pr\\\\u00e9f\\\\u00e9rence) et l\'\\\\u00e9chauffer. Verser \\\\u00e0 l\'aide d\'une louche la p\\\\u00e2te \\\\u00e0 cr\\\\u00eapes, dans la po\\\\u00eale, retourner apr\\\\u00e8s 2 min, laisser la seconde face cuire pendant environ 1 min 30 sec.\\\"]\"', '\"[\\\"Utilisez une po\\\\u00eale bien chaude pour des cr\\\\u00eapes parfaites.\\\",\\\"Ajoutez un peu de rhum ou de fleur d\'oranger pour parfumer la p\\\\u00e2te.\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-13', '2025-05-13 22:14:58', '2025-05-13 22:14:58', 0),
+(2, 'Cookies Moelleux au Chocolat', 'Les cookies moelleux, c\'est le goûter parfait : croustillants à l\'extérieur, fondants à l\'intérieur, et pleins de pépites de chocolat !', '/images/placeholder.jpg', 'Biscuits', 'Très facile', 15, 15, 12, '\"[\\\"200 g de beurre mou\\\",\\\"150 g de sucre\\\",\\\"2 \\\\u0153ufs\\\",\\\"1 pinc\\\\u00e9e de sel\\\",\\\"Ar\\\\u00f4me vanille (environ 1 c. \\\\u00e0 caf\\\\u00e9)\\\",\\\"400 g de farine\\\",\\\"1 c. \\\\u00e0 caf\\\\u00e9 de levure chimique\\\",\\\"50 g de chocolat blanc ou noir (hach\\\\u00e9 grossi\\\\u00e8rement)\\\",\\\"50 g de chocolat blanc\\\",\\\"P\\\\u00e9pites de chocolat pour la d\\\\u00e9coration\\\"]\"', '\"[\\\"Pr\\\\u00e9chauffez le four \\\\u00e0 180\\\\u00b0C. Pr\\\\u00e9parez une plaque avec du papier cuisson.\\\",\\\"Dans un grand bol, m\\\\u00e9langez le beurre mou avec le sucre jusqu\'\\\\u00e0 obtenir une texture cr\\\\u00e9meuse.\\\",\\\"Ajoutez les \\\\u0153ufs un \\\\u00e0 un, puis l\'ar\\\\u00f4me vanille. M\\\\u00e9langez bien.\\\",\\\"Ajoutez la farine, la levure chimique et la pinc\\\\u00e9e de sel. M\\\\u00e9langez jusqu\'\\\\u00e0 l\'obtention d\'une p\\\\u00e2te homog\\\\u00e8ne.\\\",\\\"Incorporez les morceaux de chocolat blanc et\\\\\\/ou noir dans la p\\\\u00e2te.\\\",\\\"Faites des boules de p\\\\u00e2te (taille d\'une grosse noix) et disposez-les sur la plaque, en les espa\\\\u00e7ant bien. Ajoutez quelques p\\\\u00e9pites de chocolat sur le dessus pour une finition gourmande.\\\",\\\"Faites cuire 12 \\\\u00e0 15 minutes. Les bords doivent \\\\u00eatre dor\\\\u00e9s et le centre encore l\\\\u00e9g\\\\u00e8rement mou.\\\",\\\"Laissez les cookies ti\\\\u00e9dir 5 minutes sur la plaque avant de les transf\\\\u00e9rer sur une grille.\\\"]\"', '\"[\\\"Pour plus de moelleux, ne pas trop cuire les cookies : sortez-les quand le centre est encore un peu tendre.\\\",\\\"Pour des cookies encore plus gourmands, ajoutez des noisettes concass\\\\u00e9es ou un c\\\\u0153ur de p\\\\u00e2te \\\\u00e0 tartiner dans chaque boule.\\\",\\\"Vous pouvez conserver les cookies dans une bo\\\\u00eete herm\\\\u00e9tique jusqu\'\\\\u00e0 5 jours.\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-13', '2025-05-13 22:14:58', '2025-05-13 22:14:58', 0),
+(3, 'Croissants maison bien feuilletés', 'Des croissants maison délicieusement feuilletés, croustillants à l\'extérieur et moelleux à l\'intérieur.', '/images/placeholder.jpg', 'Viennoiseries', 'Moyen', 30, 20, 10, '\"[\\\"250 g de farine T45 ou T55\\\",\\\"5 g de sel\\\",\\\"30 g de sucre\\\",\\\"10 g de levure boulang\\\\u00e8re fra\\\\u00eeche (ou 4 g de s\\\\u00e8che)\\\",\\\"15 cl de lait ti\\\\u00e8de\\\",\\\"125 g de beurre froid pour le tourage\\\",\\\"1 \\\\u0153uf pour la dorure\\\"]\"', '\"[\\\"Pr\\\\u00e9parer la p\\\\u00e2te : Dans un grand bol, m\\\\u00e9lange la farine, le sucre et le sel. D\\\\u00e9laye la levure dans le lait ti\\\\u00e8de et ajoute-la au m\\\\u00e9lange. P\\\\u00e9tris jusqu\'\\\\u00e0 obtenir une p\\\\u00e2te homog\\\\u00e8ne (5-10 min). Forme une boule, filme et laisse reposer 1 h \\\\u00e0 temp\\\\u00e9rature ambiante.\\\",\\\"Le beurre de tourage : D\\\\u00e9coupe le beurre froid en un carr\\\\u00e9 d\'environ 15x15 cm entre deux feuilles de papier cuisson. R\\\\u00e9serve-le au frigo.\\\",\\\"Le tourage (feuilletage) : \\\\u00c9tale la p\\\\u00e2te en un grand rectangle. D\\\\u00e9pose le carr\\\\u00e9 de beurre au centre et replie la p\\\\u00e2te dessus. \\\\u00c9tale dans la longueur, puis fais un \\\\\\\"tour portefeuille\\\\\\\" (replie les deux extr\\\\u00e9mit\\\\u00e9s au centre puis replie en deux). Mets au frais 30 min. Recommence l\'op\\\\u00e9ration 2 fois (3 tours au total).\\\",\\\"Fa\\\\u00e7onnage : \\\\u00c9tale la p\\\\u00e2te en un grand rectangle de 3-4 mm d\'\\\\u00e9paisseur. D\\\\u00e9coupe des triangles et roule-les de la base vers la pointe. Dispose-les sur une plaque et laisse pousser 2 h \\\\u00e0 temp\\\\u00e9rature ambiante.\\\",\\\"Cuisson : Pr\\\\u00e9chauffe le four \\\\u00e0 200 \\\\u00b0C. Dore les croissants \\\\u00e0 l\'\\\\u0153uf battu. Enfourne 15 \\\\u00e0 20 min jusqu\'\\\\u00e0 ce qu\'ils soient bien dor\\\\u00e9s.\\\"]\"', '\"[\\\"Utilise du beurre de qualit\\\\u00e9 (type AOP Charentes-Poitou) pour un vrai go\\\\u00fbt de croissant de boulangerie.\\\",\\\"Pour une version encore plus gourmande, ajoute des barres de chocolat et fais des pains au chocolat.\\\",\\\"Ne l\\\\u00e9sine pas sur les temps de repos, c\'est le secret d\'un bon feuilletage.\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-13', '2025-05-13 22:14:58', '2025-05-13 22:14:58', 0),
+(4, 'Cupcakes vanille glaçage crémeux', 'Des cupcakes moelleux à la vanille avec un délicieux glaçage crémeux, parfaits pour toutes les occasions !', '/images/placeholder.jpg', 'Petits Gâteaux', 'Facile', 20, 20, 10, '\"[\\\"Pour les cupcakes :\\\",\\\"120 g de farine\\\",\\\"100 g de sucre\\\",\\\"1 \\\\u0153uf\\\",\\\"60 g de beurre fondu\\\",\\\"1\\\\\\/2 sachet de levure chimique\\\",\\\"1 pinc\\\\u00e9e de sel\\\",\\\"1 cuill\\\\u00e8re \\\\u00e0 caf\\\\u00e9 d\'extrait de vanille\\\",\\\"8 cl de lait\\\",\\\"Pour le gla\\\\u00e7age (buttercream vanille) :\\\",\\\"100 g de beurre mou\\\",\\\"200 g de sucre glace\\\",\\\"1 cuill\\\\u00e8re \\\\u00e0 caf\\\\u00e9 de vanille\\\",\\\"1 \\\\u00e0 2 cuill\\\\u00e8res \\\\u00e0 soupe de lait (pour la texture)\\\"]\"', '\"[\\\"Pr\\\\u00e9parer les cupcakes : Pr\\\\u00e9chauffe ton four \\\\u00e0 180\\\\u00b0C. Dans un saladier, fouette l\'\\\\u0153uf avec le sucre jusqu\'\\\\u00e0 ce que le m\\\\u00e9lange blanchisse. Ajoute le beurre fondu, la vanille, puis le lait. Incorpore la farine, la levure et le sel. Verse la p\\\\u00e2te dans des moules \\\\u00e0 cupcakes garnis de caissettes (remplis \\\\u00e0 moiti\\\\u00e9 ou 2\\\\\\/3 max). Enfourne pour 18-20 minutes. Laisse refroidir compl\\\\u00e8tement.\\\",\\\"Pr\\\\u00e9parer le gla\\\\u00e7age : Fouette le beurre mou jusqu\'\\\\u00e0 ce qu\'il devienne cr\\\\u00e9meux. Ajoute petit \\\\u00e0 petit le sucre glace, la vanille et le lait. Fouette jusqu\'\\\\u00e0 obtenir une texture l\\\\u00e9g\\\\u00e8re. Mets en poche \\\\u00e0 douille et d\\\\u00e9core tes cupcakes refroidis.\\\"]\"', '\"[\\\"Tu peux colorer ton gla\\\\u00e7age avec une pointe de colorant ou ajouter quelques fruits mix\\\\u00e9s pour un twist.\\\",\\\"Utilise des douilles \\\\u00e9toil\\\\u00e9es pour un rendu pro, m\\\\u00eame en restant \\\\u00e0 la maison.\\\",\\\"Tu veux faire une version choco ? Remplace 20 g de farine par du cacao non sucr\\\\u00e9.\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-13', '2025-05-13 22:14:58', '2025-05-13 22:14:58', 0),
+(5, 'Gâteau maison ultra moelleux', 'Un gâteau simple et délicieux, parfait pour toutes les occasions. Sa texture moelleuse et son goût délicat en font un classique indémodable.', '/images/placeholder.jpg', 'Gâteaux', 'Très facile', 15, 40, 8, '\"[\\\"200 g de farine\\\",\\\"100 g de sucre\\\",\\\"3 \\\\u0153ufs\\\",\\\"100 g de beurre fondu\\\",\\\"1 sachet de levure chimique\\\",\\\"10 cl de lait\\\",\\\"1 cuill\\\\u00e8re \\\\u00e0 caf\\\\u00e9 d\'extrait de vanille (ou zeste de citron, fleur d\'oranger\\\\u2026)\\\",\\\"1 pinc\\\\u00e9e de sel\\\"]\"', '\"[\\\"Pr\\\\u00e9chauffe le four \\\\u00e0 180\\\\u00b0C.\\\",\\\"Dans un grand saladier, bats les \\\\u0153ufs avec le sucre jusqu\'\\\\u00e0 ce que le m\\\\u00e9lange blanchisse.\\\",\\\"Ajoute le beurre fondu, le lait et la vanille.\\\",\\\"Incorpore la farine, la levure et la pinc\\\\u00e9e de sel.\\\",\\\"Verse la p\\\\u00e2te dans un moule beurr\\\\u00e9 et farin\\\\u00e9.\\\",\\\"Enfourne 35 \\\\u00e0 40 min. V\\\\u00e9rifie la cuisson avec la lame d\'un couteau : elle doit ressortir s\\\\u00e8che.\\\",\\\"Laisse refroidir avant de d\\\\u00e9mouler. D\\\\u00e9core selon ton humeur : sucre glace, gla\\\\u00e7age, fruits, p\\\\u00e9pites\\\\u2026\\\"]\"', '\"[\\\"Pour un g\\\\u00e2teau marbr\\\\u00e9 : s\\\\u00e9pare la p\\\\u00e2te en deux et ajoute du cacao dans l\'une des moiti\\\\u00e9s.\\\",\\\"Pour une version fruit\\\\u00e9e : ajoute des pommes en lamelles, des framboises ou des bananes \\\\u00e9cras\\\\u00e9es.\\\",\\\"Envie d\'un topping fondant ? Gla\\\\u00e7age chocolat ou cr\\\\u00e8me citron, fais-toi plaisir.\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-13', '2025-05-13 22:14:58', '2025-05-13 22:14:58', 0),
+(6, 'Gâteau au chocolat fondant maison', 'Un gâteau au chocolat délicieusement fondant, parfait pour les amateurs de chocolat. Son cœur moelleux et son goût intense en font un dessert irrésistible.', '/images/placeholder.jpg', 'Gâteaux', 'Facile', 15, 30, 8, '\"[\\\"200 g de chocolat noir p\\\\u00e2tissier\\\",\\\"100 g de beurre\\\",\\\"100 g de sucre\\\",\\\"3 \\\\u0153ufs\\\",\\\"70 g de farine\\\",\\\"1 sachet de levure chimique\\\",\\\"1 pinc\\\\u00e9e de sel\\\",\\\"1 cuill\\\\u00e8re \\\\u00e0 soupe de lait ou de cr\\\\u00e8me (optionnel)\\\"]\"', '\"[\\\"Pr\\\\u00e9chauffe le four \\\\u00e0 180\\\\u00b0C.\\\",\\\"Fais fondre le chocolat avec le beurre (au bain-marie ou micro-ondes 30 s \\\\u00e0 1 min).\\\",\\\"Dans un saladier, fouette les \\\\u0153ufs avec le sucre jusqu\'\\\\u00e0 obtenir un m\\\\u00e9lange mousseux.\\\",\\\"Ajoute le chocolat fondu, puis la farine, la levure et le sel.\\\",\\\"M\\\\u00e9lange jusqu\'\\\\u00e0 obtenir une p\\\\u00e2te homog\\\\u00e8ne.\\\",\\\"Verse dans un moule beurr\\\\u00e9 et farin\\\\u00e9.\\\",\\\"Enfourne pour 25 \\\\u00e0 30 min selon la texture souhait\\\\u00e9e : 25 min pour un c\\\\u0153ur fondant, 30 min pour un g\\\\u00e2teau moelleux.\\\",\\\"Laisse ti\\\\u00e9dir avant de d\\\\u00e9mouler.\\\"]\"', '\"[\\\"Pour un c\\\\u0153ur encore plus fondant, ajoute des morceaux de chocolat dans la p\\\\u00e2te avant cuisson.\\\",\\\"Tu peux parsemer de noix, noisettes ou \\\\u00e9clats de caramel pour un croquant irr\\\\u00e9sistible.\\\",\\\"Pour un gla\\\\u00e7age rapide : fais fondre 50 g de chocolat avec un peu de cr\\\\u00e8me et verse sur le g\\\\u00e2teau refroidi.\\\"]\"', 'Chef Marie', '/images/placeholder-author.jpg', '2025-05-13', '2025-05-13 22:14:58', '2025-05-13 22:14:58', 0);
 
 -- --------------------------------------------------------
 
@@ -253,16 +228,6 @@ CREATE TABLE `recipe_likes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `recipe_likes`
---
-
-INSERT INTO `recipe_likes` (`id`, `user_id`, `recipe_id`, `is_liked`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 1, '2025-05-13 16:20:38', '2025-05-13 16:33:33'),
-(2, 2, 2, 1, '2025-05-13 16:29:46', '2025-05-13 16:40:08'),
-(3, 3, 1, 1, '2025-05-13 16:41:25', '2025-05-13 16:41:25'),
-(4, 3, 2, 1, '2025-05-13 16:41:55', '2025-05-13 16:41:55');
 
 -- --------------------------------------------------------
 
@@ -284,7 +249,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('MxyWunGo0dENl6Gp4sEJyveCmwPej4bZH6Mw81oE', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWXRBZjVZSnBKY0F4SXoxVVNlQXFqNGczeFB1WnVMa2R5NXhiRDA2cSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mzt9', 1747158115);
+('vdNeNHxdHYFIQU12ptE7LptleSKnBpoROEjioeXQ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWXR6cVdabGxrbkhVM3RzTjFMWHJVWGxyMWZWUlJCb3VEZ0wwM01CUyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1747178143);
 
 -- --------------------------------------------------------
 
@@ -320,9 +285,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Test User', 'test@example.com', '2025-05-09 11:20:09', '$2y$12$wjkwTDmeWcVvB1figArnwePl6d6r.UnEB2VnL4bY5h.4RyBW24nXa', 'yQjk5lxPc6', '2025-05-09 11:20:10', '2025-05-09 11:20:10'),
-(2, 'Dimitry Brayan Sonwa Doumtsop', 'sonwadimitry26@gmail.com', NULL, '$2y$12$AWID4KRYeghhSTdn9Gm0BeePvPgHjCUeAhSIIBQikPBJKJc6WqtQm', NULL, '2025-05-13 16:20:30', '2025-05-13 16:20:30'),
-(3, 'brayan', 'brayandoumtsop12@gmail.com', NULL, '$2y$12$WDeMAI0bCKrPCdi2WUIrp.5lSbwA7Sv7i2y8CJYXvI68Msqm7kqlK', NULL, '2025-05-13 16:41:10', '2025-05-13 16:41:10');
+(1, 'Test User', 'test@example.com', '2025-05-13 22:00:35', '$2y$12$avYS.E7LEs4ZRb1MVLd/Q.3j33.E5b3cDvhniwLMBs1hsKvjlwypa', 'ThIVaZirlR', '2025-05-13 22:00:35', '2025-05-13 22:00:35');
 
 --
 -- Index pour les tables déchargées
@@ -441,7 +404,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `failed_jobs`
@@ -477,7 +440,7 @@ ALTER TABLE `recipes`
 -- AUTO_INCREMENT pour la table `recipe_likes`
 --
 ALTER TABLE `recipe_likes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `steps`
@@ -489,7 +452,7 @@ ALTER TABLE `steps`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
@@ -508,462 +471,6 @@ ALTER TABLE `comments`
 ALTER TABLE `recipe_likes`
   ADD CONSTRAINT `recipe_likes_recipe_id_foreign` FOREIGN KEY (`recipe_id`) REFERENCES `recipes` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `recipe_likes_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
---
--- Base de données : `phpmyadmin`
---
-CREATE DATABASE IF NOT EXISTS `phpmyadmin` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `phpmyadmin`;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__bookmark`
---
-
-CREATE TABLE `pma__bookmark` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `dbase` varchar(255) NOT NULL DEFAULT '',
-  `user` varchar(255) NOT NULL DEFAULT '',
-  `label` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `query` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Bookmarks';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__central_columns`
---
-
-CREATE TABLE `pma__central_columns` (
-  `db_name` varchar(64) NOT NULL,
-  `col_name` varchar(64) NOT NULL,
-  `col_type` varchar(64) NOT NULL,
-  `col_length` text DEFAULT NULL,
-  `col_collation` varchar(64) NOT NULL,
-  `col_isNull` tinyint(1) NOT NULL,
-  `col_extra` varchar(255) DEFAULT '',
-  `col_default` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Central list of columns';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__column_info`
---
-
-CREATE TABLE `pma__column_info` (
-  `id` int(5) UNSIGNED NOT NULL,
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `table_name` varchar(64) NOT NULL DEFAULT '',
-  `column_name` varchar(64) NOT NULL DEFAULT '',
-  `comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `mimetype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
-  `transformation` varchar(255) NOT NULL DEFAULT '',
-  `transformation_options` varchar(255) NOT NULL DEFAULT '',
-  `input_transformation` varchar(255) NOT NULL DEFAULT '',
-  `input_transformation_options` varchar(255) NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__designer_settings`
---
-
-CREATE TABLE `pma__designer_settings` (
-  `username` varchar(64) NOT NULL,
-  `settings_data` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Settings related to Designer';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__export_templates`
---
-
-CREATE TABLE `pma__export_templates` (
-  `id` int(5) UNSIGNED NOT NULL,
-  `username` varchar(64) NOT NULL,
-  `export_type` varchar(10) NOT NULL,
-  `template_name` varchar(64) NOT NULL,
-  `template_data` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved export templates';
-
---
--- Déchargement des données de la table `pma__export_templates`
---
-
-INSERT INTO `pma__export_templates` (`id`, `username`, `export_type`, `template_name`, `template_data`) VALUES
-(1, 'root', 'server', 'delice', '{\"quick_or_custom\":\"quick\",\"what\":\"sql\",\"db_select[]\":[\"delice\",\"phpmyadmin\",\"test\"],\"aliases_new\":\"\",\"output_format\":\"sendit\",\"filename_template\":\"@SERVER@\",\"remember_template\":\"on\",\"charset\":\"utf-8\",\"compression\":\"none\",\"maxsize\":\"\",\"codegen_structure_or_data\":\"data\",\"codegen_format\":\"0\",\"csv_separator\":\",\",\"csv_enclosed\":\"\\\"\",\"csv_escaped\":\"\\\"\",\"csv_terminated\":\"AUTO\",\"csv_null\":\"NULL\",\"csv_columns\":\"something\",\"csv_structure_or_data\":\"data\",\"excel_null\":\"NULL\",\"excel_columns\":\"something\",\"excel_edition\":\"win\",\"excel_structure_or_data\":\"data\",\"json_structure_or_data\":\"data\",\"json_unicode\":\"something\",\"latex_caption\":\"something\",\"latex_structure_or_data\":\"structure_and_data\",\"latex_structure_caption\":\"Structure de la table @TABLE@\",\"latex_structure_continued_caption\":\"Structure de la table @TABLE@ (suite)\",\"latex_structure_label\":\"tab:@TABLE@-structure\",\"latex_relation\":\"something\",\"latex_comments\":\"something\",\"latex_mime\":\"something\",\"latex_columns\":\"something\",\"latex_data_caption\":\"Contenu de la table @TABLE@\",\"latex_data_continued_caption\":\"Contenu de la table @TABLE@ (suite)\",\"latex_data_label\":\"tab:@TABLE@-data\",\"latex_null\":\"\\\\textit{NULL}\",\"mediawiki_structure_or_data\":\"data\",\"mediawiki_caption\":\"something\",\"mediawiki_headers\":\"something\",\"htmlword_structure_or_data\":\"structure_and_data\",\"htmlword_null\":\"NULL\",\"ods_null\":\"NULL\",\"ods_structure_or_data\":\"data\",\"odt_structure_or_data\":\"structure_and_data\",\"odt_relation\":\"something\",\"odt_comments\":\"something\",\"odt_mime\":\"something\",\"odt_columns\":\"something\",\"odt_null\":\"NULL\",\"pdf_report_title\":\"\",\"pdf_structure_or_data\":\"data\",\"phparray_structure_or_data\":\"data\",\"sql_include_comments\":\"something\",\"sql_header_comment\":\"\",\"sql_use_transaction\":\"something\",\"sql_compatibility\":\"NONE\",\"sql_structure_or_data\":\"structure_and_data\",\"sql_create_table\":\"something\",\"sql_auto_increment\":\"something\",\"sql_create_view\":\"something\",\"sql_create_trigger\":\"something\",\"sql_backquotes\":\"something\",\"sql_type\":\"INSERT\",\"sql_insert_syntax\":\"both\",\"sql_max_query_size\":\"50000\",\"sql_hex_for_binary\":\"something\",\"sql_utc_time\":\"something\",\"texytext_structure_or_data\":\"structure_and_data\",\"texytext_null\":\"NULL\",\"yaml_structure_or_data\":\"data\",\"\":null,\"as_separate_files\":null,\"csv_removeCRLF\":null,\"excel_removeCRLF\":null,\"json_pretty_print\":null,\"htmlword_columns\":null,\"ods_columns\":null,\"sql_dates\":null,\"sql_relation\":null,\"sql_mime\":null,\"sql_disable_fk\":null,\"sql_views_as_tables\":null,\"sql_metadata\":null,\"sql_drop_database\":null,\"sql_drop_table\":null,\"sql_if_not_exists\":null,\"sql_simple_view_export\":null,\"sql_view_current_user\":null,\"sql_or_replace_view\":null,\"sql_procedure_function\":null,\"sql_truncate\":null,\"sql_delayed\":null,\"sql_ignore\":null,\"texytext_columns\":null}');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__favorite`
---
-
-CREATE TABLE `pma__favorite` (
-  `username` varchar(64) NOT NULL,
-  `tables` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Favorite tables';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__history`
---
-
-CREATE TABLE `pma__history` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `username` varchar(64) NOT NULL DEFAULT '',
-  `db` varchar(64) NOT NULL DEFAULT '',
-  `table` varchar(64) NOT NULL DEFAULT '',
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp(),
-  `sqlquery` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='SQL history for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__navigationhiding`
---
-
-CREATE TABLE `pma__navigationhiding` (
-  `username` varchar(64) NOT NULL,
-  `item_name` varchar(64) NOT NULL,
-  `item_type` varchar(64) NOT NULL,
-  `db_name` varchar(64) NOT NULL,
-  `table_name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Hidden items of navigation tree';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__pdf_pages`
---
-
-CREATE TABLE `pma__pdf_pages` (
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `page_nr` int(10) UNSIGNED NOT NULL,
-  `page_descr` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='PDF relation pages for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__recent`
---
-
-CREATE TABLE `pma__recent` (
-  `username` varchar(64) NOT NULL,
-  `tables` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Recently accessed tables';
-
---
--- Déchargement des données de la table `pma__recent`
---
-
-INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"delice\",\"table\":\"categories\"}]');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__relation`
---
-
-CREATE TABLE `pma__relation` (
-  `master_db` varchar(64) NOT NULL DEFAULT '',
-  `master_table` varchar(64) NOT NULL DEFAULT '',
-  `master_field` varchar(64) NOT NULL DEFAULT '',
-  `foreign_db` varchar(64) NOT NULL DEFAULT '',
-  `foreign_table` varchar(64) NOT NULL DEFAULT '',
-  `foreign_field` varchar(64) NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Relation table';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__savedsearches`
---
-
-CREATE TABLE `pma__savedsearches` (
-  `id` int(5) UNSIGNED NOT NULL,
-  `username` varchar(64) NOT NULL DEFAULT '',
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `search_name` varchar(64) NOT NULL DEFAULT '',
-  `search_data` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Saved searches';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__table_coords`
---
-
-CREATE TABLE `pma__table_coords` (
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `table_name` varchar(64) NOT NULL DEFAULT '',
-  `pdf_page_number` int(11) NOT NULL DEFAULT 0,
-  `x` float UNSIGNED NOT NULL DEFAULT 0,
-  `y` float UNSIGNED NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table coordinates for phpMyAdmin PDF output';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__table_info`
---
-
-CREATE TABLE `pma__table_info` (
-  `db_name` varchar(64) NOT NULL DEFAULT '',
-  `table_name` varchar(64) NOT NULL DEFAULT '',
-  `display_field` varchar(64) NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table information for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__table_uiprefs`
---
-
-CREATE TABLE `pma__table_uiprefs` (
-  `username` varchar(64) NOT NULL,
-  `db_name` varchar(64) NOT NULL,
-  `table_name` varchar(64) NOT NULL,
-  `prefs` text NOT NULL,
-  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Tables'' UI preferences';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__tracking`
---
-
-CREATE TABLE `pma__tracking` (
-  `db_name` varchar(64) NOT NULL,
-  `table_name` varchar(64) NOT NULL,
-  `version` int(10) UNSIGNED NOT NULL,
-  `date_created` datetime NOT NULL,
-  `date_updated` datetime NOT NULL,
-  `schema_snapshot` text NOT NULL,
-  `schema_sql` text DEFAULT NULL,
-  `data_sql` longtext DEFAULT NULL,
-  `tracking` set('UPDATE','REPLACE','INSERT','DELETE','TRUNCATE','CREATE DATABASE','ALTER DATABASE','DROP DATABASE','CREATE TABLE','ALTER TABLE','RENAME TABLE','DROP TABLE','CREATE INDEX','DROP INDEX','CREATE VIEW','ALTER VIEW','DROP VIEW') DEFAULT NULL,
-  `tracking_active` int(1) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database changes tracking for phpMyAdmin';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__userconfig`
---
-
-CREATE TABLE `pma__userconfig` (
-  `username` varchar(64) NOT NULL,
-  `timevalue` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `config_data` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User preferences storage for phpMyAdmin';
-
---
--- Déchargement des données de la table `pma__userconfig`
---
-
-INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2025-05-13 17:42:22', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"fr\"}');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__usergroups`
---
-
-CREATE TABLE `pma__usergroups` (
-  `usergroup` varchar(64) NOT NULL,
-  `tab` varchar(64) NOT NULL,
-  `allowed` enum('Y','N') NOT NULL DEFAULT 'N'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User groups with configured menu items';
-
--- --------------------------------------------------------
-
---
--- Structure de la table `pma__users`
---
-
-CREATE TABLE `pma__users` (
-  `username` varchar(64) NOT NULL,
-  `usergroup` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and their assignments to user groups';
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `pma__bookmark`
---
-ALTER TABLE `pma__bookmark`
-  ADD PRIMARY KEY (`id`);
-
---
--- Index pour la table `pma__central_columns`
---
-ALTER TABLE `pma__central_columns`
-  ADD PRIMARY KEY (`db_name`,`col_name`);
-
---
--- Index pour la table `pma__column_info`
---
-ALTER TABLE `pma__column_info`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `db_name` (`db_name`,`table_name`,`column_name`);
-
---
--- Index pour la table `pma__designer_settings`
---
-ALTER TABLE `pma__designer_settings`
-  ADD PRIMARY KEY (`username`);
-
---
--- Index pour la table `pma__export_templates`
---
-ALTER TABLE `pma__export_templates`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `u_user_type_template` (`username`,`export_type`,`template_name`);
-
---
--- Index pour la table `pma__favorite`
---
-ALTER TABLE `pma__favorite`
-  ADD PRIMARY KEY (`username`);
-
---
--- Index pour la table `pma__history`
---
-ALTER TABLE `pma__history`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `username` (`username`,`db`,`table`,`timevalue`);
-
---
--- Index pour la table `pma__navigationhiding`
---
-ALTER TABLE `pma__navigationhiding`
-  ADD PRIMARY KEY (`username`,`item_name`,`item_type`,`db_name`,`table_name`);
-
---
--- Index pour la table `pma__pdf_pages`
---
-ALTER TABLE `pma__pdf_pages`
-  ADD PRIMARY KEY (`page_nr`),
-  ADD KEY `db_name` (`db_name`);
-
---
--- Index pour la table `pma__recent`
---
-ALTER TABLE `pma__recent`
-  ADD PRIMARY KEY (`username`);
-
---
--- Index pour la table `pma__relation`
---
-ALTER TABLE `pma__relation`
-  ADD PRIMARY KEY (`master_db`,`master_table`,`master_field`),
-  ADD KEY `foreign_field` (`foreign_db`,`foreign_table`);
-
---
--- Index pour la table `pma__savedsearches`
---
-ALTER TABLE `pma__savedsearches`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `u_savedsearches_username_dbname` (`username`,`db_name`,`search_name`);
-
---
--- Index pour la table `pma__table_coords`
---
-ALTER TABLE `pma__table_coords`
-  ADD PRIMARY KEY (`db_name`,`table_name`,`pdf_page_number`);
-
---
--- Index pour la table `pma__table_info`
---
-ALTER TABLE `pma__table_info`
-  ADD PRIMARY KEY (`db_name`,`table_name`);
-
---
--- Index pour la table `pma__table_uiprefs`
---
-ALTER TABLE `pma__table_uiprefs`
-  ADD PRIMARY KEY (`username`,`db_name`,`table_name`);
-
---
--- Index pour la table `pma__tracking`
---
-ALTER TABLE `pma__tracking`
-  ADD PRIMARY KEY (`db_name`,`table_name`,`version`);
-
---
--- Index pour la table `pma__userconfig`
---
-ALTER TABLE `pma__userconfig`
-  ADD PRIMARY KEY (`username`);
-
---
--- Index pour la table `pma__usergroups`
---
-ALTER TABLE `pma__usergroups`
-  ADD PRIMARY KEY (`usergroup`,`tab`,`allowed`);
-
---
--- Index pour la table `pma__users`
---
-ALTER TABLE `pma__users`
-  ADD PRIMARY KEY (`username`,`usergroup`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `pma__bookmark`
---
-ALTER TABLE `pma__bookmark`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `pma__column_info`
---
-ALTER TABLE `pma__column_info`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `pma__export_templates`
---
-ALTER TABLE `pma__export_templates`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT pour la table `pma__history`
---
-ALTER TABLE `pma__history`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `pma__pdf_pages`
---
-ALTER TABLE `pma__pdf_pages`
-  MODIFY `page_nr` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT pour la table `pma__savedsearches`
---
-ALTER TABLE `pma__savedsearches`
-  MODIFY `id` int(5) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- Base de données : `test`
---
-CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `test`;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -6,79 +6,79 @@ import "@/Components/UI/RecipeCard"
 const featuredRecipes = [
   {
     id: 1,
-    title: "Tarte aux Fraises",
-    description: "Une délicieuse tarte aux fraises fraîches sur une crème pâtissière onctueuse.",
-    image: "/images/placeholder.jpg",
-    category: "Tartes",
-    date: "15 mars 2023",
-    difficulty: "Facile",
-    prepTime: "30 min",
-    cookTime: "25 min",
+    title: 'Crêpes sucrées',
+    description: 'Des crêpes moelleuses et parfumées, parfaites pour le goûter ou le petit-déjeuner.',
+    image: '/images/placeholder.jpg',
+    category: 'Pâtisseries',
+    date: '2024-03-13',
+    difficulty: 'Facile',
+    prepTime: 15,
+    cookTime: 20
   },
   {
     id: 2,
-    title: "Macarons à la Vanille",
-    description: "Des macarons parfaitement croustillants à l'extérieur et moelleux à l'intérieur.",
-    image: "/images/placeholder.jpg",
-    category: "Petits Gâteaux",
-    date: "2 avril 2023",
-    difficulty: "Intermédiaire",
-    prepTime: "45 min",
-    cookTime: "15 min",
+    title: 'Cookies Moelleux au Chocolat',
+    description: 'Les cookies moelleux, c\'est le goûter parfait : croustillants à l\'extérieur, fondants à l\'intérieur.',
+    image: '/images/placeholder.jpg',
+    category: 'Biscuits',
+    date: '2024-03-13',
+    difficulty: 'Très facile',
+    prepTime: 15,
+    cookTime: 15
   },
   {
     id: 3,
-    title: "Éclair au Chocolat",
-    description: "Un classique de la pâtisserie française avec une ganache au chocolat intense.",
-    image: "/images/placeholder.jpg",
-    category: "Pâtisseries Françaises",
-    date: "10 février 2023",
-    difficulty: "Intermédiaire",
-    prepTime: "40 min",
-    cookTime: "30 min",
+    title: 'Croissants maison bien feuilletés',
+    description: 'Des croissants maison délicieusement feuilletés, croustillants à l\'extérieur et moelleux à l\'intérieur.',
+    image: '/images/placeholder.jpg',
+    category: 'Viennoiseries',
+    date: '2024-03-13',
+    difficulty: 'Moyen',
+    prepTime: 30,
+    cookTime: 20
   },
   {
     id: 4,
-    title: "Cheesecake New-Yorkais",
-    description: "Un cheesecake crémeux avec une base de biscuits croquante et une touche de citron.",
-    image: "/images/placeholder.jpg",
-    category: "Gâteaux",
-    date: "5 mai 2023",
-    difficulty: "Facile",
-    prepTime: "20 min",
-    cookTime: "50 min",
+    title: 'Cupcakes vanille glaçage crémeux',
+    description: 'Des cupcakes moelleux à la vanille avec un délicieux glaçage crémeux, parfaits pour toutes les occasions !',
+    image: '/images/placeholder.jpg',
+    category: 'Petits Gâteaux',
+    date: '2024-03-13',
+    difficulty: 'Facile',
+    prepTime: 20,
+    cookTime: 20
   },
   {
     id: 5,
-    title: "Mille-feuille",
-    description: "Couches de pâte feuilletée croustillante et de crème pâtissière à la vanille.",
-    image: "/images/placeholder.jpg",
-    category: "Pâtisseries Françaises",
-    date: "18 janvier 2023",
-    difficulty: "Avancé",
-    prepTime: "60 min",
-    cookTime: "25 min",
+    title: 'Gâteau maison ultra moelleux',
+    description: 'Un gâteau simple et délicieux, parfait pour toutes les occasions. Sa texture moelleuse et son goût délicat en font un classique indémodable.',
+    image: '/images/placeholder.jpg',
+    category: 'Gâteaux',
+    date: '2024-03-13',
+    difficulty: 'Très facile',
+    prepTime: 15,
+    cookTime: 40
   },
   {
     id: 6,
-    title: "Cookies aux Pépites de Chocolat",
-    description: "Des cookies moelleux avec des pépites de chocolat fondantes.",
-    image: "/images/placeholder.jpg",
-    category: "Biscuits",
-    date: "22 mars 2023",
-    difficulty: "Facile",
-    prepTime: "15 min",
-    cookTime: "12 min",
-  },
+    title: 'Gâteau au chocolat fondant maison',
+    description: 'Un gâteau au chocolat délicieusement fondant, parfait pour les amateurs de chocolat. Son cœur moelleux et son goût intense en font un dessert irrésistible.',
+    image: '/images/placeholder.jpg',
+    category: 'Gâteaux',
+    date: '2024-03-13',
+    difficulty: 'Facile',
+    prepTime: 15,
+    cookTime: 30
+  }
 ]
 
 // Données simulées pour les catégories
 const categories = [
-  { id: 1, name: "Tartes", count: 12 },
-  { id: 2, name: "Gâteaux", count: 18 },
-  { id: 3, name: "Petits Gâteaux", count: 9 },
-  { id: 4, name: "Biscuits", count: 15 },
-  { id: 5, name: "Pâtisseries Françaises", count: 14 },
+  { id: 1, name: "Pâtisseries", count: 1 },  // Crêpes sucrées
+  { id: 2, name: "Biscuits", count: 1 },     // Cookies Moelleux au Chocolat
+  { id: 3, name: "Viennoiseries", count: 1 }, // Croissants maison
+  { id: 4, name: "Petits Gâteaux", count: 1 }, // Cupcakes
+  { id: 5, name: "Gâteaux", count: 2 }      // Gâteau maison et Gâteau au chocolat
 ]
 
 function Home() {
@@ -100,9 +100,12 @@ function Home() {
               </button>
               <Link
                 href={route('login')}
-                className="border border-primary text-primary hover:bg-pink-100 px-4 py-2 rounded transition-transform transform hover:scale-105"
+                className="bg-white hover:bg-pink-50 text-primary border-2 border-primary px-6 py-2 rounded-full font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center gap-2"
               >
-                Se connecter
+                <span>Rejoindre l'aventure</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
               </Link>
             </div>
           </div>
@@ -151,9 +154,9 @@ function Home() {
                 <div className="flex flex-wrap gap-2 text-xs text-gray-500 mb-4">
                   <span>Difficulté: {recipe.difficulty}</span>
                   <span>•</span>
-                  <span>Préparation: {recipe.prepTime}</span>
+                  <span>Préparation: {recipe.prepTime} min</span>
                   <span>•</span>
-                  <span>Cuisson: {recipe.cookTime}</span>
+                  <span>Cuisson: {recipe.cookTime} min</span>
                 </div>
                 <Link
                   href={`/recipes/${recipe.id}`}

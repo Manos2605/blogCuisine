@@ -8,6 +8,8 @@ function RecipeDetail({ recipe }) {
   const [likesCount, setLikesCount] = useState(recipe.likes_count || 0)
   const [userLike, setUserLike] = useState(recipe.user_like)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [showNotification, setShowNotification] = useState(false)
+  const [notificationData, setNotificationData] = useState(null)
   const { data, setData, post, processing, reset } = useForm({
     content: ''
   })
@@ -29,10 +31,13 @@ function RecipeDetail({ recipe }) {
           setUserLike(page.props.recipe.user_like)
         }
       },
-      onError: () => {
+      onError: (errors) => {
         setUserLike(!userLike)
         setLikesCount(prev => userLike ? prev + 1 : prev - 1)
         setIsAnimating(false)
+        setNotificationData(errors)
+        setShowNotification(true)
+        setTimeout(() => setShowNotification(false), 5000)
       }
     })
   }
@@ -42,6 +47,11 @@ function RecipeDetail({ recipe }) {
     post(`/recipes/${recipe.id}/comment`, {
       onSuccess: () => {
         reset()
+      },
+      onError: (errors) => {
+        setNotificationData(errors)
+        setShowNotification(true)
+        setTimeout(() => setShowNotification(false), 5000)
       }
     })
   }
@@ -62,6 +72,39 @@ function RecipeDetail({ recipe }) {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Notification */}
+      {showNotification && notificationData && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm border-l-4 border-pink-500">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <svg className="h-6 w-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-medium text-gray-900 mb-1">{notificationData.error}</h3>
+                <p className="text-gray-600 mb-4">{notificationData.message}</p>
+                <Link
+                  href={route('login')}
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-500 hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                >
+                  Se connecter
+                </Link>
+              </div>
+              <button
+                onClick={() => setShowNotification(false)}
+                className="flex-shrink-0 text-gray-400 hover:text-gray-500"
+              >
+                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Breadcrumb */}
       <div className="text-sm text-gray-500 mb-6">
         <Link href="/" className="hover:text-pink-500">
@@ -102,13 +145,13 @@ function RecipeDetail({ recipe }) {
         <div className="flex flex-wrap gap-2 mb-6">
           <button 
             onClick={handleLike}
-            className="group relative flex items-center gap-1 border border-primary/20 rounded-md px-3 py-1 hover:bg-accent transition-all duration-300"
+            className="group relative flex items-center gap-1 border border-red-500 rounded-md px-3 py-1 hover:bg-red-50 transition-all duration-300"
           >
             <div className="relative">
               <Heart 
                 className={`h-5 w-5 transition-all duration-300 ${
                   isAnimating ? 'scale-150' : ''
-                } ${userLike ? 'fill-current text-red-500' : 'text-white stroke-2'}`}
+                } ${userLike ? 'fill-current text-red-500' : 'text-red-500 stroke-2'}`}
               />
               {isAnimating && (
                 <>
