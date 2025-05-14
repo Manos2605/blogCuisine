@@ -96,7 +96,7 @@ function Home() {
             </p>
             <div className="flex flex-wrap gap-4">
               <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded outline hover:bg-pink-600 transition-transform transform hover:scale-105">
-                Découvrir nos recettes
+                <Link href="/categories">Découvrir nos recettes</Link>
               </button>
               <Link
                 href={route('login')}
@@ -111,7 +111,7 @@ function Home() {
           </div>
           <div className="md:w-1/2">
             <img
-              src="/images/placeholder.jpg"
+              src="/images/home.jpg"
               alt="Délicieuses pâtisseries"
               width={600}
               height={400}
@@ -125,7 +125,7 @@ function Home() {
       <section className="mb-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">Recettes Populaires</h2>
-          <Link to="/recipes" className="text-primary hover:underline text-sm sm:text-base">
+          <Link href="/categories" className="text-primary hover:underline text-sm sm:text-base">
             Voir toutes les recettes
           </Link>
         </div>
